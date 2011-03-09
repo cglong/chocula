@@ -1,4 +1,4 @@
 
-public class SystemAdmin extends Nurse {
+public class SystemAdmin extends Nurse implements IPatient, IDoctor {
 
 }
