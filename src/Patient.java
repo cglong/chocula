@@ -1,13 +1,100 @@
-
+/**
+ * This class represents a patient.
+ * 
+ * @author Christopher Long
+ * @version 1.0
+ */
 public class Patient extends User implements IPatient {
-	private PatientInformation info;
+	private String name, address, phoneNumber, gender, pharmacy, insuranceCarrier;
+	private int age;
+	private String[] allergies;
+	private TreatmentRecord[] medicalHistory;
 	
-	public Patient(String username, String password, String name) {
+	public Patient(String username, String password, String name,
+			String address, String phoneNumber, String gender, String pharmacy,
+			String insuranceCarrier, int age, String[] allergies,
+			TreatmentRecord[] medicalHistory) {
 		super(username, password);
-		this.info = new PatientInformation(name);
+		this.name = name;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.gender = gender;
+		this.pharmacy = pharmacy;
+		this.insuranceCarrier = insuranceCarrier;
+		this.age = age;
+		this.allergies = allergies;
+		this.medicalHistory = medicalHistory;
 	}
-	
+
 	public String getName() {
-		return info.getName();
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getPharmacy() {
+		return pharmacy;
+	}
+
+	public void setPharmacy(String pharmacy) {
+		this.pharmacy = pharmacy;
+	}
+
+	public String getInsuranceCarrier() {
+		return insuranceCarrier;
+	}
+
+	public void setInsuranceCarrier(String insuranceCarrier) {
+		this.insuranceCarrier = insuranceCarrier;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String[] getAllergies() {
+		return allergies;
+	}
+
+	public void setAllergies(String[] allergies) {
+		this.allergies = allergies;
+	}
+
+	public TreatmentRecord[] getMedicalHistory() {
+		return medicalHistory;
+	}
+
+	public void setMedicalHistory(TreatmentRecord[] medicalHistory) {
+		this.medicalHistory = medicalHistory;
 	}
 }
