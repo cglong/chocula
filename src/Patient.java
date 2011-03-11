@@ -6,4 +6,8 @@ public class Patient extends User implements IPatient {
 		super(username, password);
 		this.info = new PatientInformation(name);
 	}
+	
+	public String getName() {
+		return info.getName();
+	}
 }
