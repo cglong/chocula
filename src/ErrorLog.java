@@ -1,7 +1,12 @@
+import java.util.Collection;
 import java.util.ArrayList;
 
 public class ErrorLog {
-	private static ArrayList<ErrorEntry> errors;
+	private static Collection<ErrorEntry> errors;
+	
+	public ErrorLog() {
+		errors = new ArrayList<ErrorEntry>();
+	}
 	
 	public void unexpectedException(Exception e) {
 		newException(e);
