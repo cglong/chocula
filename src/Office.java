@@ -13,6 +13,9 @@ public class Office {
 	private ArrayList<Record> appointments;
 	private ArrayList<Record> treatmentrecords;
 	private ArrayList<Record> doctorsorders;
+	private String username;
+	private String password;
+	private int lockout;
 
 	public Office() {
 		users = new ArrayList<User>();
@@ -213,5 +216,25 @@ public class Office {
 				treatmentrecords.remove(tr);
 			}
 		}
+	}
+	
+	
+	
+
+	
+	
+	/**
+	 * This method will do a check to see if the username/password combo
+	 * appears in the database of username/password combos, and will return
+	 * the username of the one that fits.
+	 */
+	public void login(String username, String password) {
+		this.username = username;
+		
+		//lockout++ when username and password don't match any in database.
+	}
+
+	public String logout() {
+		return username;
 	}
 }
