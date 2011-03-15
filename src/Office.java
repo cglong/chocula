@@ -10,9 +10,9 @@ import java.util.Date;
  */
 public class Office {
 	private Collection<User> users;
-	private ArrayList<Record> appointments;
-	private ArrayList<Record> treatmentrecords;
-	private ArrayList<Record> doctorsorders;
+	private static Collection<Record> appointments;
+	private static Collection<Record> treatmentrecords;
+	private static Collection<Record> doctorsorders;
 	private String username;
 	private String password;
 	private int lockout;
@@ -31,11 +31,12 @@ public class Office {
 	 *            The name of the patient to find.
 	 * @return The patient with the specified name.
 	 */
-	public Patient findPatient(String name) {
+	public Patient findPatient(String firstname, String lastname) {
 		for (User user : users)
 			if (user instanceof Patient) {
 				Patient patient = (Patient) user;
-				if (patient.getName().equals(name))
+				if (patient.getFirstname().equals(firstname)
+						&& patient.getLastname().equals(lastname))
 					return patient;
 			}
 		return null;
@@ -47,11 +48,11 @@ public class Office {
 	 * @param newAP
 	 * @return created appointment
 	 */
-	public ArrayList<Record> createAppointment(Date date, Doctor doctor,
+	public static Appointment createAppointment(Date date, Doctor doctor,
 			String reason, Patient patient) {
 		Appointment ret = new Appointment(date, reason, doctor, patient);
 		appointments.add(ret);
-		return appointments;
+		return ret;
 	}
 
 	/**
@@ -64,6 +65,7 @@ public class Office {
 	 */
 	public Appointment readAppointment(Date date, Doctor doctor, String reason,
 			Patient patient) {
+
 		Appointment ret = new Appointment(date, reason, doctor, patient);
 		for (Record appointment : appointments) {
 			if (ret.equals(appointment)) {
@@ -159,7 +161,7 @@ public class Office {
 	 * @param patient
 	 * @return treatment records
 	 */
-	public ArrayList<Record> createTreatmentRecord(Doctor treatingDoctor,
+	public Collection<Record> createTreatmentRecord(Doctor treatingDoctor,
 			Date dateAndTime, Nurse attendingNurse,
 			DoctorsOrders doctorsOrders, String chiefComplaint,
 			String vitalSigns, String diagnosis, Patient patient) {
@@ -217,21 +219,16 @@ public class Office {
 			}
 		}
 	}
-	
-	
-	
 
-	
-	
 	/**
-	 * This method will do a check to see if the username/password combo
-	 * appears in the database of username/password combos, and will return
-	 * the username of the one that fits.
+	 * This method will do a check to see if the username/password combo appears
+	 * in the database of username/password combos, and will return the username
+	 * of the one that fits.
 	 */
 	public void login(String username, String password) {
 		this.username = username;
-		
-		//lockout++ when username and password don't match any in database.
+
+		// lockout++ when username and password don't match any in database.
 	}
 
 	public String logout() {

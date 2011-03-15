@@ -5,17 +5,19 @@
  * @version 1.0
  */
 public class Patient extends User implements IPatient {
-	private String name, address, phoneNumber, gender, pharmacy, insuranceCarrier;
+	private String firstname, lastname, address, phoneNumber, gender, pharmacy,
+			insuranceCarrier;
 	private int age;
 	private String[] allergies;
 	private TreatmentRecord[] medicalHistory;
-	
-	public Patient(String username, String password, String name,
-			String address, String phoneNumber, String gender, String pharmacy,
-			String insuranceCarrier, int age, String[] allergies,
-			TreatmentRecord[] medicalHistory) {
+
+	public Patient(String username, String password, String firstname,
+			String lastname, String address, String phoneNumber, String gender,
+			String pharmacy, String insuranceCarrier, int age,
+			String[] allergies, TreatmentRecord[] medicalHistory) {
 		super(username, password);
-		this.name = name;
+		this.setLastname(lastname);
+		this.setFirstname(firstname);
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.gender = gender;
@@ -24,14 +26,6 @@ public class Patient extends User implements IPatient {
 		this.age = age;
 		this.allergies = allergies;
 		this.medicalHistory = medicalHistory;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getAddress() {
@@ -96,5 +90,21 @@ public class Patient extends User implements IPatient {
 
 	public void setMedicalHistory(TreatmentRecord[] medicalHistory) {
 		this.medicalHistory = medicalHistory;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getLastname() {
+		return lastname;
 	}
 }
