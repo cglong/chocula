@@ -56,68 +56,45 @@ public class Office {
 	}
 
 	/**
-	 * Single parameter should work?
+	 * Read the corresponding appointments
 	 * 
 	 * @param date
 	 * @param doctor
 	 * @param reason
 	 * @return appointment
 	 */
-	public Appointment readAppointment(Date date, Doctor doctor, String reason,
-			Patient patient) {
-
-		Appointment ret = new Appointment(date, reason, doctor, patient);
-		for (Record appointment : appointments) {
-			if (ret.equals(appointment)) {
-				return ret;
+	public static Collection<Record> readAppointment(Date date, Doctor doctor,
+			String reason, Patient patient) {
+		Collection<Record> ret = new ArrayList<Record>();
+		if (date != null) {
+			for (Record check : appointments) {
+				if (((Appointment) check).getDesiredDateAndTime().equals(date)) {
+					ret.add(check);
+				}
 			}
 		}
-		return null;
-	}
-
-	/**
-	 * Helper method of Appointment - only date
-	 * 
-	 * @param date
-	 * @return ret
-	 */
-	public ArrayList<Record> readAppointment(Date date) {
-		ArrayList<Record> ret = new ArrayList<Record>();
-		for (Record check : appointments) {
-			if (((Appointment) check).getDesiredDateAndTime().equals(date)) {
-				ret.add(check);
+		if (doctor != null) {
+			for (Record check : appointments) {
+				if (((Appointment) check).getDesiredDoctor().equals(doctor)
+						&& date == null) {
+					ret.add(check);
+				}
 			}
 		}
-		return ret;
-	}
-
-	/**
-	 * Helper method of Appointment - only doctor
-	 * 
-	 * @param date
-	 * @return ret
-	 */
-	public ArrayList<Record> readAppointment(Doctor doctor) {
-		ArrayList<Record> ret = new ArrayList<Record>();
-		for (Record check : appointments) {
-			if (((Appointment) check).getDesiredDoctor().equals(doctor)) {
-				ret.add(check);
+		if (reason != null) {
+			for (Record check : appointments) {
+				if (((Appointment) check).getReason().equals(reason)
+						&& date == null && doctor == null) {
+					ret.add(check);
+				}
 			}
 		}
-		return ret;
-	}
-
-	/**
-	 * Helper method of Appointment - only reason
-	 * 
-	 * @param reason
-	 * @return ret
-	 */
-	public ArrayList<Record> readAppointment(String reason) {
-		ArrayList<Record> ret = new ArrayList<Record>();
-		for (Record check : appointments) {
-			if (((Appointment) check).getReason().equals(reason)) {
-				ret.add(check);
+		if (patient != null) {
+			for (Record check : appointments) {
+				if (((Appointment) check).getPatient().equals(patient)
+						&& date == null && doctor == null && reason == null) {
+					ret.add(check);
+				}
 			}
 		}
 		return ret;
@@ -126,7 +103,11 @@ public class Office {
 	/**
 	 * Return anything?
 	 */
-	public void updateAppointment() {
+	public void updateAppointment(Date date, Doctor doctor, String reason,
+			Patient patient) {
+		Collection<Record> update = readAppointment(date, doctor, reason,
+				patient);
+
 	}
 
 	/**
@@ -203,7 +184,10 @@ public class Office {
 	/**
 	 * Return anything?
 	 */
-	public void updateTreatmentRecord() {
+	public void updateTreatmentRecord(Doctor treatingDoctor, Date dateAndTime,
+			Nurse attendingNurse, DoctorsOrders doctorsOrders,
+			String chiefComplaint, String vitalSigns, String diagnosis,
+			Patient patient) {
 	}
 
 	public void deleteTreatmentRecord(Doctor treatingDoctor, Date dateAndTime,
