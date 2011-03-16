@@ -103,8 +103,8 @@ public class Office {
 	/**
 	 * Return anything?
 	 */
-	public void updateAppointment(Date date, Doctor doctor, String reason,
-			Patient patient) {
+	public static void updateAppointment(Date date, Doctor doctor,
+			String reason, Patient patient) {
 		Collection<Record> update = readAppointment(date, doctor, reason,
 				patient);
 
@@ -118,8 +118,8 @@ public class Office {
 	 * @param reason
 	 * @param patient
 	 */
-	public void deleteAppointment(Date date, Doctor doctor, String reason,
-			Patient patient) {
+	public static void deleteAppointment(Date date, Doctor doctor,
+			String reason, Patient patient) {
 		Appointment del = new Appointment(date, reason, doctor, patient);
 		for (Record appointment : appointments) {
 			if (del.equals(appointment)) {

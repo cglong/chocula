@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -35,10 +36,25 @@ public abstract class User {
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public Appointment createAppointment(Date date, Doctor doctor,
 			String reason, Patient patient) {
 		return Office.createAppointment(date, doctor, reason, patient);
+	}
+
+	public Collection<Record> readAppointment(Date date, Doctor doctor,
+			String reason, Patient patient) {
+		return Office.readAppointment(date, doctor, reason, patient);
+	}
+
+	public void updateAppointment(Date date, Doctor doctor, String reason,
+			Patient patient) {
+		Office.updateAppointment(date, doctor, reason, patient);
+	}
+
+	public void deleteAppointment(Date date, Doctor doctor, String reason,
+			Patient patient) {
+		Office.deleteAppointment(date, doctor, reason, patient);
 	}
 
 }
