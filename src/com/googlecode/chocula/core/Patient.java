@@ -1,3 +1,4 @@
+package com.googlecode.chocula.core;
 /**
  * This class represents a patient.
  * 

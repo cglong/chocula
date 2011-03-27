@@ -1,5 +1,9 @@
+package com.googlecode.chocula.core;
+
 import java.util.Collection;
 import java.util.Date;
+
+import com.googlecode.chocula.server.Office;
 
 /**
  * This abstract class represents a general user in the system.

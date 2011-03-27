@@ -1,3 +1,4 @@
+package com.googlecode.chocula.server;
 /**
  * @(#)Storage.java
  *

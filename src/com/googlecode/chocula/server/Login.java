@@ -1,3 +1,4 @@
+package com.googlecode.chocula.server;
 /**
  * @author Elise Prado 
  * 

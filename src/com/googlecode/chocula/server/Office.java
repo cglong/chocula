@@ -1,6 +1,16 @@
+package com.googlecode.chocula.server;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Date;
+
+import com.googlecode.chocula.core.Appointment;
+import com.googlecode.chocula.core.Doctor;
+import com.googlecode.chocula.core.DoctorsOrders;
+import com.googlecode.chocula.core.Nurse;
+import com.googlecode.chocula.core.Patient;
+import com.googlecode.chocula.core.Record;
+import com.googlecode.chocula.core.TreatmentRecord;
+import com.googlecode.chocula.core.User;
 
 /**
  * 

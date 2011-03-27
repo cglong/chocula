@@ -1,3 +1,4 @@
+package com.googlecode.chocula.core;
 
 public class DoctorsOrders implements Record {
 	private StringBuffer prescriptions;

@@ -1,3 +1,4 @@
+package com.googlecode.chocula.server;
 import java.util.Collection;
 import java.util.ArrayList;
 
