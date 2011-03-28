@@ -1,4 +1,10 @@
 package com.googlecode.chocula.server;
+
+import com.db4o.*;
+import com.db4o.cs.*;
+import com.db4o.cs.config.*;
+import com.db4o.messaging.*;
+
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,16 +15,18 @@ import com.googlecode.chocula.core.DoctorsOrders;
 import com.googlecode.chocula.core.Nurse;
 import com.googlecode.chocula.core.Patient;
 import com.googlecode.chocula.core.Record;
+import com.googlecode.chocula.core.ServerInfo;
 import com.googlecode.chocula.core.TreatmentRecord;
 import com.googlecode.chocula.core.User;
 
 /**
+ * Implements a central server that stores and maintains data within the system.
  * 
- * @author Elise Prado
- * @author Ye Zhefan
- * 
+ * @author Christopher Long/Zhefan Ye/Elise Prado
+ * @version 1.0
  */
-public class Office {
+public class Server implements ServerInfo, MessageRecipient {
+	private boolean stop = false;
 	private Collection<User> users;
 	private static Collection<Record> appointments;
 	private static Collection<Record> treatmentrecords;
@@ -27,11 +35,46 @@ public class Office {
 	private String password;
 	private int lockout;
 
-	public Office() {
+	public Server() {
 		users = new ArrayList<User>();
 		appointments = new ArrayList<Record>();
 		treatmentrecords = new ArrayList<Record>();
 		doctorsorders = new ArrayList<Record>();
+	}
+	
+	public static void main(String[] args) {
+		new Server().runServer();
+	}
+	
+	public void runServer() {
+		synchronized (this) {
+			ServerConfiguration config = Db4oClientServer.newServerConfiguration();
+			config.networking().messageRecipient(this);
+			ObjectServer db4oServer = Db4oClientServer.openServer(config, FILE, PORT);
+			db4oServer.grantAccess(USER, PASS);
+			
+			Thread.currentThread().setName(this.getClass().getName());
+			Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
+			try {
+				if (!stop)
+					this.wait(Long.MAX_VALUE);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			db4oServer.close();
+		}
+	}
+	
+	@Override
+	public void processMessage(MessageContext con, Object msg) {
+		close();
+	}
+	
+	public void close() {
+		synchronized (this) {
+			stop = true;
+			this.notify();
+		}
 	}
 
 	/**

@@ -3,7 +3,7 @@ package com.googlecode.chocula.core;
 import java.util.Collection;
 import java.util.Date;
 
-import com.googlecode.chocula.server.Office;
+import com.googlecode.chocula.server.Server;
 
 /**
  * This abstract class represents a general user in the system.
@@ -43,22 +43,22 @@ public abstract class User {
 
 	public Appointment createAppointment(Date date, Doctor doctor,
 			String reason, Patient patient) {
-		return Office.createAppointment(date, doctor, reason, patient);
+		return Server.createAppointment(date, doctor, reason, patient);
 	}
 
 	public Collection<Record> readAppointment(Date date, Doctor doctor,
 			String reason, Patient patient) {
-		return Office.readAppointment(date, doctor, reason, patient);
+		return Server.readAppointment(date, doctor, reason, patient);
 	}
 
 	public void updateAppointment(Date date, Doctor doctor, String reason,
 			Patient patient) {
-		Office.updateAppointment(date, doctor, reason, patient);
+		Server.updateAppointment(date, doctor, reason, patient);
 	}
 
 	public void deleteAppointment(Date date, Doctor doctor, String reason,
 			Patient patient) {
-		Office.deleteAppointment(date, doctor, reason, patient);
+		Server.deleteAppointment(date, doctor, reason, patient);
 	}
 
 }
