@@ -16,15 +16,15 @@ public class Appointment implements Record {
 	 */
 	private String reason;
 
-	private Doctor desiredDoctor;
+	private Doctor doctor;
 
 	private Patient patient;
 
-	public Appointment(Date desiredDateAndTime, String reason,
-			Doctor desiredDoctor, Patient patient) {
+	public Appointment(Date desiredDateAndTime, Doctor doctor,
+			String reason, Patient patient) {
 		this.desiredDateAndTime = desiredDateAndTime;
 		this.reason = reason;
-		this.desiredDoctor = desiredDoctor;
+		this.doctor = doctor;
 		this.patient = patient;
 	}
 
@@ -44,12 +44,12 @@ public class Appointment implements Record {
 		this.reason = reason;
 	}
 
-	public Doctor getDesiredDoctor() {
-		return desiredDoctor;
+	public Doctor getDoctor() {
+		return doctor;
 	}
 
-	public void setDesiredDoctor(Doctor desiredDoctor) {
-		this.desiredDoctor = desiredDoctor;
+	public void setDesiredDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 
 	public void setPatient(Patient patient) {
@@ -66,7 +66,7 @@ public class Appointment implements Record {
 	public boolean equals(Object o) {
 		Appointment apt = (Appointment) o;
 		if (apt.getDesiredDateAndTime().equals(this.getDesiredDateAndTime())
-				&& apt.getDesiredDoctor().equals(this.getDesiredDoctor())
+				&& apt.getDoctor().equals(this.getDoctor())
 				&& apt.getReason().equals(this.getReason())
 				&& apt.getPatient().equals(this.getPatient())) {
 			return true;

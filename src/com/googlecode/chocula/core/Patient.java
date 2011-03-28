@@ -28,6 +28,10 @@ public class Patient extends User implements IPatient {
 		this.allergies = allergies;
 		this.medicalHistory = medicalHistory;
 	}
+	
+	public Patient(String firstname, String lastname) {
+		this(null, null, firstname, lastname, null, null, null, null, null, 0, null, null);
+	}
 
 	public String getAddress() {
 		return address;

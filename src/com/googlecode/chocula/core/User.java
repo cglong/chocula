@@ -3,7 +3,7 @@ package com.googlecode.chocula.core;
 import java.util.Collection;
 import java.util.Date;
 
-import com.googlecode.chocula.server.Storage;
+import com.googlecode.chocula.client.Storage;
 
 /**
  * This abstract class represents a general user in the system.
@@ -43,22 +43,22 @@ public abstract class User {
 
 	public Appointment createAppointment(Date date, Doctor doctor,
 			String reason, Patient patient) {
-		return Storage.createAppointment(date, doctor, reason, patient);
+		return Storage.getInstance().createAppointment(date, doctor, reason, patient);
 	}
 
-	public Collection<Record> readAppointment(Date date, Doctor doctor,
+	public Collection<Appointment> readAppointment(Date date, Doctor doctor,
 			String reason, Patient patient) {
-		return Storage.readAppointment(date, doctor, reason, patient);
+		return Storage.getInstance().readAppointment(date, doctor, reason, patient);
 	}
 
-	public void updateAppointment(Date date, Doctor doctor, String reason,
+	public void updateAppointment(Appointment old, Date date, Doctor doctor, String reason,
 			Patient patient) {
-		Storage.updateAppointment(date, doctor, reason, patient);
+		Storage.getInstance().updateAppointment(old, date, doctor, reason, patient);
 	}
 
 	public void deleteAppointment(Date date, Doctor doctor, String reason,
 			Patient patient) {
-		Storage.deleteAppointment(date, doctor, reason, patient);
+		Storage.getInstance().deleteAppointment(date, doctor, reason, patient);
 	}
 
 }
