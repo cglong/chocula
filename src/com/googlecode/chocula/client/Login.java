@@ -36,10 +36,16 @@ public class Login {
 			lockout++;
 	}
 	
+	public boolean isLoggedIn() {
+		return user != null;
+	}
+	
 	public boolean canTry() {
 		return lockout < 3;
 	}
 
 	public void logout() {
+		user = null;
+		lockout = 0;
 	}
 }
