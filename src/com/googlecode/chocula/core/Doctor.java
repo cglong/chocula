@@ -5,5 +5,7 @@ package com.googlecode.chocula.core;
  * 
  */
 public class Doctor extends Nurse implements IDoctor {
-
+	public Doctor(String username, String password) {
+		super(username, password);
+	}
 }

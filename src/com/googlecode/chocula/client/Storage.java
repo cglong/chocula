@@ -6,6 +6,7 @@ import java.util.Date;
 import com.db4o.*;
 import com.db4o.cs.*;
 import com.googlecode.chocula.core.*;
+import com.googlecode.chocula.core.User;
 
 /**
  * @(#)Storage.java
@@ -35,6 +36,17 @@ public class Storage implements ServerInfo {
 		if (instance == null)
 			instance = new Storage();
 		return instance;
+	}
+	
+	public User readUser(String username, String password) {
+		User user = (User) db.queryByExample(new Patient(username, password)).next();
+		if (user == null)
+			user = (User) db.queryByExample(new Nurse(username, password)).next();
+		if (user == null)
+			user = (User) db.queryByExample(new Doctor(username, password)).next();
+		if (user == null)
+			user = (User) db.queryByExample(new SystemAdmin(username, password)).next();
+		return user;
 	}
 	
 	/**

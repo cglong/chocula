@@ -15,9 +15,6 @@ import com.googlecode.chocula.core.ServerInfo;
  */
 public class Server implements ServerInfo, MessageRecipient {
 	private boolean stop = false;
-	private String username;
-	private String password;
-	private int lockout;
 	
 	public static void main(String[] args) {
 		new Server().runServer();
@@ -52,20 +49,5 @@ public class Server implements ServerInfo, MessageRecipient {
 			stop = true;
 			this.notify();
 		}
-	}
-
-	/**
-	 * This method will do a check to see if the username/password combo appears
-	 * in the database of username/password combos, and will return the username
-	 * of the one that fits.
-	 */
-	public void login(String username, String password) {
-		this.username = username;
-
-		// lockout++ when username and password don't match any in database.
-	}
-
-	public String logout() {
-		return username;
 	}
 }
