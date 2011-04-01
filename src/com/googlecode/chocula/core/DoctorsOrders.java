@@ -1,40 +1,40 @@
 package com.googlecode.chocula.core;
 
 public class DoctorsOrders implements Record {
-	private StringBuffer prescriptions;
-	private StringBuffer labWork;
-	private StringBuffer followUpInstr;
-	private StringBuffer otherInstr;
+	private String prescriptions;
+	private String labWork;
+	private String followUpInstr;
+	private String otherInstr;
 	
-	DoctorsOrders(StringBuffer prescriptions, StringBuffer labWork, StringBuffer followUpInstr, StringBuffer otherInstr){
+	public DoctorsOrders(String prescriptions, String labWork, String followUpInstr, String otherInstr){
 		this.prescriptions = prescriptions;
 		this.labWork = labWork;
 		this.followUpInstr = followUpInstr;
 		this.otherInstr = otherInstr;
 	}
 	
-	public StringBuffer getPrescriptions() {
+	public String getPrescriptions() {
 		return prescriptions;
 	}
-	public void setPrescriptions(StringBuffer prescriptions) {
+	public void setPrescriptions(String prescriptions) {
 		this.prescriptions = prescriptions;
 	}
-	public StringBuffer getLabWork() {
+	public String getLabWork() {
 		return labWork;
 	}
-	public void setLabWork(StringBuffer labWork) {
+	public void setLabWork(String labWork) {
 		this.labWork = labWork;
 	}
-	public StringBuffer getFollowUpInstr() {
+	public String getFollowUpInstr() {
 		return followUpInstr;
 	}
-	public void setFollowUpInstr(StringBuffer followUpInstr) {
+	public void setFollowUpInstr(String followUpInstr) {
 		this.followUpInstr = followUpInstr;
 	}
-	public StringBuffer getOtherInstr() {
+	public String getOtherInstr() {
 		return otherInstr;
 	}
-	public void setOtherInstr(StringBuffer otherInstr) {
+	public void setOtherInstr(String otherInstr) {
 		this.otherInstr = otherInstr;
 	}
 	

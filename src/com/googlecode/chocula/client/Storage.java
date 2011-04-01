@@ -281,4 +281,59 @@ public class Storage implements ServerInfo {
 		ObjectSet<TreatmentRecord> result = db.queryByExample(tr);
 		db.delete(result.next());
 	}
+	
+	/**
+	 * Create a new doctor's order
+	 * 
+	 * @param newAP
+	 * @return created doctor's order
+	 */
+	public DoctorsOrders createDoctorsOrders(String prescriptions, String labWork,
+			String followUpInstr, String otherInstr) {
+		DoctorsOrders doctorsOrders = new DoctorsOrders(prescriptions, labWork,
+				followUpInstr, otherInstr);
+		db.store(doctorsOrders);
+		return doctorsOrders;
+	}
+
+	/**
+	 * Read the corresponding doctor's orders
+	 * 
+	 * @param date
+	 * @param doctor
+	 * @param reason
+	 * @return appointment
+	 */
+	public ObjectSet<DoctorsOrders> readDoctorsOrders(String prescriptions, String labWork,
+			String followUpInstr, String otherInstr) {
+		return db.queryByExample(new DoctorsOrders(prescriptions, labWork,
+				followUpInstr, otherInstr));
+	}
+
+	/**
+	 * Return anything?
+	 */
+	public void updateDoctorsOrders(DoctorsOrders old, String prescriptions, String labWork,
+			String followUpInstr, String otherInstr) {
+		ObjectSet<DoctorsOrders> result = db.queryByExample(old);
+		DoctorsOrders found = result.next();
+		found.setPrescriptions(prescriptions);
+		found.setLabWork(labWork);
+		found.setFollowUpInstr(followUpInstr);
+		found.setOtherInstr(otherInstr);
+		db.store(found);
+	}
+
+	/**
+	 * Delete a doctor's order
+	 * 
+	 * @param date
+	 * @param doctor
+	 * @param reason
+	 * @param patient
+	 */
+	public void deleteDoctorsOrders(DoctorsOrders doctorsOrders) {
+		ObjectSet<Appointment> result = db.queryByExample(doctorsOrders);
+		db.delete(result.next());
+	}
 }

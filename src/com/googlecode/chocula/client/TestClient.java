@@ -180,4 +180,30 @@ public class TestClient extends TestCase {
 				doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient);
 		assertFalse(result.hasNext());
 	}
+	
+	public void testCRUDDoctorsOrders() {
+		String prescriptions = "Ritalin";
+		String labWork = "blood drawn";
+		String followUpInstr = "take twice daily";
+		String otherInstr = "come back in 3 months";
+		ObjectSet<DoctorsOrders> result;
+		
+		DoctorsOrders doctorsOrders = Storage.getInstance().createDoctorsOrders(prescriptions, labWork,
+				followUpInstr, otherInstr);
+		assertTrue(doctorsOrders != null);
+		
+		result = Storage.getInstance().readDoctorsOrders(prescriptions, labWork, followUpInstr, otherInstr);
+		assertTrue(result.hasNext());
+		
+		prescriptions = "Adderall";
+		Storage.getInstance().updateDoctorsOrders(doctorsOrders, prescriptions, labWork,
+				followUpInstr, otherInstr);
+		result = Storage.getInstance().readDoctorsOrders(prescriptions, labWork, followUpInstr, otherInstr);
+		doctorsOrders = result.next();
+		assertEquals(prescriptions, doctorsOrders.getPrescriptions());
+		
+		Storage.getInstance().deleteDoctorsOrders(doctorsOrders);
+		result = Storage.getInstance().readDoctorsOrders(prescriptions, labWork, followUpInstr, otherInstr);
+		assertFalse(result.hasNext());
+	}
 }
