@@ -59,13 +59,57 @@ public class TestClient extends TestCase {
 		result = Storage.getInstance().readPatient(username, password, firstname,
 				lastname, address, phoneNumber, gender, pharmacy, insuranceCarrier, age,
 				allergies, medicalHistory);
-		Patient newPatient = result.next();
-		assertEquals(username, newPatient.getUsername());
+		patient = result.next();
+		assertEquals(username, patient.getUsername());
 		
-		Storage.getInstance().deletePatient(newPatient);
+		Storage.getInstance().deletePatient(patient);
 		result = Storage.getInstance().readPatient(username, password, firstname,
 				lastname, address, phoneNumber, gender, pharmacy, insuranceCarrier, age,
 				allergies, medicalHistory);
+		assertTrue(result.next() == null);
+	}
+	
+	public void testCRUDNurse() {
+		String username = "nurse";
+		String password = "pass";
+		ObjectSet<Nurse> result;
+		
+		Nurse nurse = Storage.getInstance().createNurse(username, password);
+		assertTrue(nurse != null);
+		
+		result = Storage.getInstance().readNurse(username, password);
+		assertTrue(result.next() != null);
+		
+		username = "newNurse";
+		Storage.getInstance().updateNurse(nurse, username, password);
+		result = Storage.getInstance().readNurse(username, password);
+		nurse = result.next();
+		assertEquals(username, nurse.getUsername());
+		
+		Storage.getInstance().deleteNurse(nurse);
+		result = Storage.getInstance().readNurse(username, password);
+		assertTrue(result.next() == null);
+	}
+	
+	public void testCRUDDoctor() {
+		String username = "doctor";
+		String password = "pass";
+		ObjectSet<Doctor> result;
+		
+		Doctor doctor = Storage.getInstance().createDoctor(username, password);
+		assertTrue(doctor != null);
+		
+		result = Storage.getInstance().readDoctor(username, password);
+		assertTrue(result.next() != null);
+		
+		username = "newDoctor";
+		Storage.getInstance().updateNurse(doctor, username, password);
+		result = Storage.getInstance().readDoctor(username, password);
+		doctor = result.next();
+		assertEquals(username, doctor.getUsername());
+		
+		Storage.getInstance().deleteNurse(doctor);
+		result = Storage.getInstance().readDoctor(username, password);
 		assertTrue(result.next() == null);
 	}
 }
