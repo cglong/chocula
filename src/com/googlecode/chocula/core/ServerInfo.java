@@ -1,5 +1,11 @@
 package com.googlecode.chocula.core;
 
+/**
+ * This interface contains information shared between the client and server.
+ * 
+ * @author Christopher Long
+ * @version 1.0
+ */
 public interface ServerInfo {
 	public String HOST = "localhost";
 	public String FILE = "database.db4o";
