@@ -1,19 +1,20 @@
 package com.googlecode.chocula.core;
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Invoice implements Record {
-	private String patientName;
-	private Integer date; 	//uses mmddyy format
-	private String doctorSeen;
+	private Patient patient;
+	private Date date;
+	private Doctor doctorSeen;
 	private List itemizedName;
 	ArrayList<Integer> itemizedCost;
 
 
 	
-	Invoice(String patientName, Integer date, String doctorSeen, String itemizedName, Integer itemizedCost){
-		this.patientName = patientName;
+	public Invoice(Patient patient, Date date, Doctor doctorSeen, String itemizedName, Integer itemizedCost){
+		this.patient = patient;
 		this.doctorSeen = doctorSeen;
 		this.date = date;
 		this.itemizedName = new List();
@@ -25,36 +26,36 @@ public class Invoice implements Record {
 
 
 	public String getPatientName() {
-		return patientName;
+		return patient.getFirstname() + " " + patient.getLastname();
 	}
 
 
 
-	public void setPatientName(String patientName) {
-		this.patientName = patientName;
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
 
 
-	public Integer getDate() {
+	public Date getDate() {
 		return date;
 	}
 
 
 
-	public void setDate(Integer date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
 
 
-	public String getDoctorSeen() {
+	public Doctor getDoctorSeen() {
 		return doctorSeen;
 	}
 
 
 
-	public void setDoctorSeen(String doctorSeen) {
+	public void setDoctorSeen(Doctor doctorSeen) {
 		this.doctorSeen = doctorSeen;
 	}
 

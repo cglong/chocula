@@ -206,4 +206,23 @@ public class TestClient extends TestCase {
 		result = Storage.getInstance().readDoctorsOrders(prescriptions, labWork, followUpInstr, otherInstr);
 		assertFalse(result.hasNext());
 	}
+	
+	public void testCreateInvoice() {
+		Patient patient = new Patient(null, null);
+		patient.setFirstname("Bob");
+		patient.setLastname("Saget");
+		
+		Date date = new Date();
+		Doctor doctor = new Doctor(null, null);
+		String itemizedName = "blood work";
+		Integer itemizedCost = 100;
+		
+		Invoice invoice = new Invoice(patient, date, doctor, itemizedName, itemizedCost);
+		assertTrue(invoice != null);
+		assertEquals("Bob Saget", invoice.getPatientName());
+		assertEquals(date, invoice.getDate());
+		assertEquals(doctor, invoice.getDoctorSeen());
+		assertEquals(itemizedName, invoice.getItemizedName().getItem(0));
+		assertEquals(itemizedCost, invoice.getItemizedCost().get(0));
+	}
 }
