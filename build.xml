@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="M4" default="all">
+<project name="Chocula" default="all">
 	<target name="init" description="Initializes Ant">
 		<path id="classpath">
 			<fileset dir="lib" includes="*.jar"/>
@@ -30,7 +30,7 @@
 	<target name="run-server" depends="jar-server" description="Runs JAR file">
 		<java jar="Server.jar" fork="true"/>
 	</target>
-	<target name="all" depends="jar-server, javadoc" description="Performs all operations"/>
+	<target name="all" depends="run-server, javadoc" description="Performs all operations"/>
 	<target name="clean" description="Deletes all generated files and folders">
 		<delete dir="build"/>
 		<delete dir="apidoc"/>
