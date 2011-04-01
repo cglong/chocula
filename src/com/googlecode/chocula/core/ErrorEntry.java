@@ -23,6 +23,10 @@ public class ErrorEntry {
 		this.type = type;
 	}
 	
+	public ErrorEntry(Exception e, Object o) {
+		this(e, o, null);
+	}
+	
 	/**
 	 * This method creates a new unexpected error entry.
 	 * 

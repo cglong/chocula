@@ -484,4 +484,29 @@ public class Storage implements ServerInfo {
 		ObjectSet<Appointment> result = db.queryByExample(doctorsOrders);
 		db.delete(result.next());
 	}
+	
+	public ErrorEntry createUnexpectedErrorEntry(Exception e, Object o) {
+		ErrorEntry ee = ErrorEntry.newUnexpectedException(e, o);
+		db.store(ee);
+		return ee;
+	}
+	
+	public ErrorEntry createExpectedErrorEntry(Exception e, Object o) {
+		ErrorEntry ee = ErrorEntry.newExpectedException(e, o);
+		db.store(ee);
+		return ee;
+	}
+	
+	public ObjectSet<ErrorEntry> readErrorEntries(Exception e, Object o) {
+		return db.queryByExample(new ErrorEntry(e, o));
+	}
+	
+	public ObjectSet<ErrorEntry> readAllErrorEntries() {
+		return db.queryByExample(new ErrorEntry(null, null));
+	}
+	
+	public void deleteErrorEntry(ErrorEntry ee) {
+		ObjectSet<ErrorEntry> result = db.queryByExample(ee);
+		db.delete(result.next());
+	}
 }

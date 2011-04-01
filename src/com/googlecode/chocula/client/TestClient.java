@@ -225,4 +225,19 @@ public class TestClient extends TestCase {
 		assertEquals(itemizedName, invoice.getItemizedName().getItem(0));
 		assertEquals(itemizedCost, invoice.getItemizedCost().get(0));
 	}
+	
+	public void testLogging() {
+		Exception e = new Exception();
+		String test = "test";
+		ErrorEntry ee = Storage.getInstance().createExpectedErrorEntry(e, test);
+		assertTrue(ee != null);
+		ObjectSet<ErrorEntry> result;
+		
+		result = Storage.getInstance().readErrorEntries(e, test);
+		assertTrue(result.hasNext());
+		
+		Storage.getInstance().deleteErrorEntry(ee);
+		result = Storage.getInstance().readErrorEntries(e, test);
+		assertFalse(result.hasNext());
+	}
 }
