@@ -112,4 +112,13 @@ public class TestClient extends TestCase {
 		result = Storage.getInstance().readDoctor(username, password);
 		assertTrue(result.next() == null);
 	}
+	
+	public void testPatientLookup() {
+		String firstname = "Bob", lastname = "Saget";
+		Storage.getInstance().createPatient(null, null, firstname, lastname, null, null, null,
+				null, null, 0, null, null);
+		Patient bobSaget = Storage.getInstance().findPatient(firstname, lastname);
+		assertEquals(firstname, bobSaget.getFirstname());
+		assertEquals(lastname, bobSaget.getLastname());
+	}
 }
