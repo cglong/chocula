@@ -147,4 +147,37 @@ public class TestClient extends TestCase {
 		result = Storage.getInstance().readAppointment(date, doctor, reason, patient);
 		assertFalse(result.hasNext());
 	}
+	
+	public void testCRUDTreatmentRecord() {
+		Doctor doctor = new Doctor(null, null);
+		Date date = new Date();
+		Nurse nurse = new Nurse(null, null);
+		DoctorsOrders doctorsOrders = null;
+		String chiefComplaint = "cough";
+		String vitalSigns = "120/80";
+		String diagnosis = "hypochondria";
+		Patient patient = new Patient(null, null);
+		ObjectSet<TreatmentRecord> result;
+		
+		TreatmentRecord tr = Storage.getInstance().createTreatmentRecord(doctor, date, nurse,
+				doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient);
+		assertTrue(tr != null);
+		
+		result = Storage.getInstance().readTreatmentRecord(doctor, date, nurse,
+				doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient);
+		assertTrue(result.hasNext());
+		
+		chiefComplaint = "sneeze";
+		Storage.getInstance().updateTreatmentRecord(tr, doctor, date, nurse,
+				doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient);
+		result = Storage.getInstance().readTreatmentRecord(doctor, date, nurse,
+				doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient);
+		tr = result.next();
+		assertEquals(chiefComplaint, tr.getChiefComplaint());
+		
+		Storage.getInstance().deleteTreatmentRecord(tr);
+		result = Storage.getInstance().readTreatmentRecord(doctor, date, nurse,
+				doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient);
+		assertFalse(result.hasNext());
+	}
 }
