@@ -1,10 +1,5 @@
 package com.googlecode.chocula.core;
 
-import java.util.Collection;
-import java.util.Date;
-
-import com.googlecode.chocula.client.Storage;
-
 /**
  * This abstract class represents a general user in the system.
  * 
@@ -40,25 +35,4 @@ public abstract class User {
 	public String getPassword() {
 		return password;
 	}
-
-	public Appointment createAppointment(Date date, Doctor doctor,
-			String reason, Patient patient) {
-		return Storage.getInstance().createAppointment(date, doctor, reason, patient);
-	}
-
-	public Collection<Appointment> readAppointment(Date date, Doctor doctor,
-			String reason, Patient patient) {
-		return Storage.getInstance().readAppointment(date, doctor, reason, patient);
-	}
-
-	public void updateAppointment(Appointment old, Date date, Doctor doctor, String reason,
-			Patient patient) {
-		Storage.getInstance().updateAppointment(old, date, doctor, reason, patient);
-	}
-
-	public void deleteAppointment(Date date, Doctor doctor, String reason,
-			Patient patient) {
-		Storage.getInstance().deleteAppointment(date, doctor, reason, patient);
-	}
-
 }
