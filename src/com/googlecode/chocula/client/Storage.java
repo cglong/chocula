@@ -38,6 +38,97 @@ public class Storage implements ServerInfo {
 		return instance;
 	}
 	
+	public Patient createPatient(String username, String password, String firstname,
+			String lastname, String address, String phoneNumber, String gender,
+			String pharmacy, String insuranceCarrier, int age,
+			String[] allergies, TreatmentRecord[] medicalHistory) {
+		Patient patient = new Patient(username, password, firstname, lastname,
+				address, phoneNumber, gender, pharmacy, insuranceCarrier, age,
+				allergies, medicalHistory);
+		db.store(patient);
+		return patient;
+	}
+	
+	public Nurse createNurse(String username, String password) {
+		Nurse nurse = new Nurse(username, password);
+		db.store(nurse);
+		return nurse;
+	}
+	
+	public Doctor createDoctor(String username, String password) {
+		Doctor doctor = new Doctor(username, password);
+		db.store(doctor);
+		return doctor;
+	}
+	
+	public Collection<Patient> readPatient(String username, String password, String firstname,
+			String lastname, String address, String phoneNumber, String gender,
+			String pharmacy, String insuranceCarrier, int age,
+			String[] allergies, TreatmentRecord[] medicalHistory) {
+		Patient proto = new Patient(username, password, firstname, lastname,
+				address, phoneNumber, gender, pharmacy, insuranceCarrier, age,
+				allergies, medicalHistory);
+		return db.queryByExample(proto);
+	}
+	
+	public Collection<Nurse> readNurse(String username, String password) {
+		return db.queryByExample(new Nurse(username, password));
+	}
+	
+	public Collection<Doctor> readDoctor(String username, String password) {
+		return db.queryByExample(new Doctor(username, password));
+	}
+	
+	public void updatePatient(Patient old, String username, String password, String firstname,
+			String lastname, String address, String phoneNumber, String gender,
+			String pharmacy, String insuranceCarrier, int age,
+			String[] allergies, TreatmentRecord[] medicalHistory) {
+		ObjectSet<Patient> result = db.queryByExample(old);
+		Patient found = result.next();
+		found.setFirstname(firstname);
+		found.setLastname(lastname);
+		found.setAddress(address);
+		found.setPhoneNumber(phoneNumber);
+		found.setGender(gender);
+		found.setPharmacy(pharmacy);
+		found.setInsuranceCarrier(insuranceCarrier);
+		found.setAge(age);
+		found.setAllergies(allergies);
+		found.setMedicalHistory(medicalHistory);
+		db.store(found);
+	}
+	
+	public void updateNurse(Nurse old, String username, String password) {
+		ObjectSet<Nurse> result = db.queryByExample(old);
+		Nurse found = result.next();
+		found.setUsername(username);
+		found.setPassword(password);
+		db.store(found);
+	}
+	
+	public void updateDoctor(Doctor old, String username, String password) {
+		ObjectSet<Doctor> result = db.queryByExample(old);
+		Doctor found = result.next();
+		found.setUsername(username);
+		found.setPassword(password);
+		db.store(found);
+	}
+	
+	public void deletePatient(Patient patient) {
+		ObjectSet<Patient> result = db.queryByExample(patient);
+		db.delete(result.next());
+	}
+	
+	public void deleteNurse(Nurse nurse) {
+		ObjectSet<Nurse> result = db.queryByExample(nurse);
+		db.delete(result.next());
+	}
+	
+	public void deleteDoctor(Doctor doctor) {
+		ObjectSet<Doctor> result = db.queryByExample(doctor);
+		db.delete(result.next());
+	}
+	
 	public User readUser(String username, String password) {
 		User user = (User) db.queryByExample(new Patient(username, password)).next();
 		if (user == null)
@@ -112,9 +203,8 @@ public class Storage implements ServerInfo {
 	 * @param reason
 	 * @param patient
 	 */
-	public void deleteAppointment(Date date, Doctor doctor,
-			String reason, Patient patient) {
-		ObjectSet<Appointment> result = db.queryByExample(new Appointment(date, doctor, reason, patient));
+	public void deleteAppointment(Appointment appointment) {
+		ObjectSet<Appointment> result = db.queryByExample(appointment);
 		db.delete(result.next());
 	}
 
@@ -182,12 +272,8 @@ public class Storage implements ServerInfo {
 		db.store(found);
 	}
 
-	public void deleteTreatmentRecord(Doctor treatingDoctor, Date dateAndTime,
-			Nurse attendingNurse, DoctorsOrders doctorsOrders,
-			String chiefComplaint, String vitalSigns, String diagnosis,
-			Patient patient) {
-		ObjectSet<TreatmentRecord> result = db.queryByExample(new TreatmentRecord(treatingDoctor, dateAndTime,
-				attendingNurse, doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient));
+	public void deleteTreatmentRecord(TreatmentRecord tr) {
+		ObjectSet<TreatmentRecord> result = db.queryByExample(tr);
 		db.delete(result.next());
 	}
 }
