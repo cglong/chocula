@@ -16,10 +16,18 @@ import com.googlecode.chocula.core.ServerInfo;
 public class Server implements ServerInfo, MessageRecipient {
 	private boolean stop = false;
 	
+	/**
+	 * This main method starts the server.
+	 * 
+	 * @param args Any command-line arguments passed in
+	 */
 	public static void main(String[] args) {
 		new Server().runServer();
 	}
 	
+	/**
+	 * This method starts a server for receiving messages
+	 */
 	public void runServer() {
 		synchronized (this) {
 			ServerConfiguration config = Db4oClientServer.newServerConfiguration();
@@ -44,6 +52,9 @@ public class Server implements ServerInfo, MessageRecipient {
 		close();
 	}
 	
+	/**
+	 * This method closes the server
+	 */
 	public void close() {
 		synchronized (this) {
 			stop = true;
