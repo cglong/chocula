@@ -43,7 +43,7 @@ public class Login {
 	 */
 	public void login(String username, String password) {
 		user = Storage.getInstance().readUser(username, password);
-		if (user == null)
+		if (user == null && canTry())
 			lockout++;
 	}
 	
