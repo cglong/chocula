@@ -1,6 +1,5 @@
 package com.googlecode.chocula.client;
 
-import java.util.Collection;
 import java.util.Date;
 
 import com.db4o.*;
@@ -61,7 +60,7 @@ public class Storage implements ServerInfo {
 		return doctor;
 	}
 	
-	public Collection<Patient> readPatient(String username, String password, String firstname,
+	public ObjectSet<Patient> readPatient(String username, String password, String firstname,
 			String lastname, String address, String phoneNumber, String gender,
 			String pharmacy, String insuranceCarrier, int age,
 			String[] allergies, TreatmentRecord[] medicalHistory) {
@@ -71,11 +70,11 @@ public class Storage implements ServerInfo {
 		return db.queryByExample(proto);
 	}
 	
-	public Collection<Nurse> readNurse(String username, String password) {
+	public ObjectSet<Nurse> readNurse(String username, String password) {
 		return db.queryByExample(new Nurse(username, password));
 	}
 	
-	public Collection<Doctor> readDoctor(String username, String password) {
+	public ObjectSet<Doctor> readDoctor(String username, String password) {
 		return db.queryByExample(new Doctor(username, password));
 	}
 	
@@ -176,7 +175,7 @@ public class Storage implements ServerInfo {
 	 * @param reason
 	 * @return appointment
 	 */
-	public Collection<Appointment> readAppointment(Date date, Doctor doctor,
+	public ObjectSet<Appointment> readAppointment(Date date, Doctor doctor,
 			String reason, Patient patient) {
 		return db.queryByExample(new Appointment(date, doctor, reason, patient));
 	}
@@ -244,7 +243,7 @@ public class Storage implements ServerInfo {
 	 * @param patient
 	 * @return tr
 	 */
-	public Collection<TreatmentRecord> readTreatmentRecord(Doctor treatingDoctor,
+	public ObjectSet<TreatmentRecord> readTreatmentRecord(Doctor treatingDoctor,
 			Date dateAndTime, Nurse attendingNurse,
 			DoctorsOrders doctorsOrders, String chiefComplaint,
 			String vitalSigns, String diagnosis, Patient patient) {
