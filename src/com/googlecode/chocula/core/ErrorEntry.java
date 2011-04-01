@@ -17,10 +17,32 @@ public class ErrorEntry {
 	 * @param e The exception that occurred.
 	 * @param o The object that created the exception.
 	 */
-	public ErrorEntry(Exception e, Object o, ErrorType type) {
+	protected ErrorEntry(Exception e, Object o, ErrorType type) {
 		this.e = e;
 		this.o = o;
 		this.type = type;
+	}
+	
+	/**
+	 * This method creates a new unexpected error entry.
+	 * 
+	 * @param e The exception
+	 * @param o The object that caused the exception
+	 * @return The new error entry
+	 */
+	public static ErrorEntry newUnexpectedException(Exception e, Object o) {
+		return new ErrorEntry(e, o, ErrorType.UNEXPECTED);
+	}
+	
+	/**
+	 * This method creates a new expected error entry.
+	 * 
+	 * @param e The exception
+	 * @param o The object that caused the exception
+	 * @return The new error entry
+	 */
+	public static ErrorEntry newExpectedException(Exception e, Object o) {
+		return new ErrorEntry(e, o, ErrorType.EXPECTED);
 	}
 	
 	/**
