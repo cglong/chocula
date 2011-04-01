@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project name="M4" default="all">
+	<target name="init" description="Initializes Ant">
+		<path id="classpath">
+			<fileset dir="lib" includes="*.jar"/>
+		</path>
+	</target>
+	<target name="prepare" depends="init" description="Make all required directories">
+		<mkdir dir="build"/>
+		<mkdir dir="build/server"/>
+		<mkdir dir="apidoc"/>
+	</target>
+	<target name="compile-server" depends="prepare" description="Compile source into classes">
+		<javac srcdir="src/com/googlecode/chocula/core" classpathref="classpath" destdir="build/server" includeantruntime="false"/>
+		<javac srcdir="src/com/googlecode/chocula/server" classpathref="classpath" destdir="build/server" includeantruntime="false"/>
+	</target>
+	<target name="javadoc" depends="prepare" description="Creates documentation">
+		<javadoc sourcepath="src" classpathref="classpath" destdir="apidoc"/>
+	</target>
+	<target name="jar-server" depends="compile-server" description="Creates an executable JAR file">
+		<jar destfile="Server.jar">
+			<fileset dir="build/server"/>
+			<zipgroupfileset dir="lib"/>
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Main-Class" value="com.googlecode.chocula.server.Server"/>
+			</manifest>
+		</jar>
+	</target>
+	<target name="run-server" depends="jar-server" description="Runs JAR file">
+		<java jar="Server.jar" fork="true"/>
+	</target>
+	<target name="all" depends="jar-server, javadoc" description="Performs all operations"/>
+	<target name="clean" description="Deletes all generated files and folders">
+		<delete dir="build"/>
+		<delete dir="apidoc"/>
+		<delete file="Server.jar"/>
+	</target>
+</project>
