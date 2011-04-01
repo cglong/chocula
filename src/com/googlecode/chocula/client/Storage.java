@@ -84,6 +84,8 @@ public class Storage implements ServerInfo {
 			String[] allergies, TreatmentRecord[] medicalHistory) {
 		ObjectSet<Patient> result = db.queryByExample(old);
 		Patient found = result.next();
+		found.setUsername(username);
+		found.setPassword(password);
 		found.setFirstname(firstname);
 		found.setLastname(lastname);
 		found.setAddress(address);
@@ -129,14 +131,18 @@ public class Storage implements ServerInfo {
 	}
 	
 	public User readUser(String username, String password) {
-		User user = (User) db.queryByExample(new Patient(username, password)).next();
-		if (user == null)
-			user = (User) db.queryByExample(new Nurse(username, password)).next();
-		if (user == null)
-			user = (User) db.queryByExample(new Doctor(username, password)).next();
-		if (user == null)
-			user = (User) db.queryByExample(new SystemAdmin(username, password)).next();
-		return user;
+		ObjectSet<User> result;
+		result = db.queryByExample(new Patient(username, password));
+		if (!result.hasNext())
+			result = db.queryByExample(new Nurse(username, password));
+		if (!result.hasNext())
+			result = db.queryByExample(new Doctor(username, password));
+		if (!result.hasNext())
+			result = db.queryByExample(new SystemAdmin(username, password));
+		if (result.hasNext())
+			return result.next();
+		else
+			return null;
 	}
 	
 	/**

@@ -52,7 +52,7 @@ public class TestClient extends TestCase {
 		result = Storage.getInstance().readPatient(username, password, firstname,
 				lastname, address, phoneNumber, gender, pharmacy, insuranceCarrier, age,
 				allergies, medicalHistory);
-		assertTrue(result.next() != null);
+		assertTrue(result.hasNext());
 		
 		username = "newPatient";
 		Storage.getInstance().updatePatient(patient, username, password, firstname,
@@ -68,7 +68,7 @@ public class TestClient extends TestCase {
 		result = Storage.getInstance().readPatient(username, password, firstname,
 				lastname, address, phoneNumber, gender, pharmacy, insuranceCarrier, age,
 				allergies, medicalHistory);
-		assertTrue(result.next() == null);
+		assertFalse(result.hasNext());
 	}
 	
 	public void testCRUDNurse() {
@@ -80,7 +80,7 @@ public class TestClient extends TestCase {
 		assertTrue(nurse != null);
 		
 		result = Storage.getInstance().readNurse(username, password);
-		assertTrue(result.next() != null);
+		assertTrue(result.hasNext());
 		
 		username = "newNurse";
 		Storage.getInstance().updateNurse(nurse, username, password);
@@ -90,7 +90,7 @@ public class TestClient extends TestCase {
 		
 		Storage.getInstance().deleteNurse(nurse);
 		result = Storage.getInstance().readNurse(username, password);
-		assertTrue(result.next() == null);
+		assertFalse(result.hasNext());
 	}
 	
 	public void testCRUDDoctor() {
@@ -102,7 +102,7 @@ public class TestClient extends TestCase {
 		assertTrue(doctor != null);
 		
 		result = Storage.getInstance().readDoctor(username, password);
-		assertTrue(result.next() != null);
+		assertTrue(result.hasNext());
 		
 		username = "newDoctor";
 		Storage.getInstance().updateNurse(doctor, username, password);
@@ -112,7 +112,7 @@ public class TestClient extends TestCase {
 		
 		Storage.getInstance().deleteNurse(doctor);
 		result = Storage.getInstance().readDoctor(username, password);
-		assertTrue(result.next() == null);
+		assertFalse(result.hasNext());
 	}
 	
 	public void testPatientLookup() {
@@ -135,7 +135,7 @@ public class TestClient extends TestCase {
 		assertTrue(appointment != null);
 		
 		result = Storage.getInstance().readAppointment(date, doctor, reason, patient);
-		assertTrue(result.next() != null);
+		assertTrue(result.hasNext());
 		
 		reason = "sneeze";
 		Storage.getInstance().updateAppointment(appointment, date, doctor, reason, patient);
@@ -145,6 +145,6 @@ public class TestClient extends TestCase {
 		
 		Storage.getInstance().deleteAppointment(appointment);
 		result = Storage.getInstance().readAppointment(date, doctor, reason, patient);
-		assertTrue(result.next() == null);
+		assertFalse(result.hasNext());
 	}
 }
