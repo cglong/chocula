@@ -13,7 +13,10 @@ public abstract class User {
 		this.username = username;
 		this.password = password;
 	}
-
+	
+	/**
+	 * This constructor creates an empty user.
+	 */
 	public User() {
 		this(null, null);
 	}
@@ -27,6 +30,11 @@ public abstract class User {
 		return username;
 	}
 	
+	/**
+	 * This setter sets the username of the user
+	 * 
+	 * @param username The new username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -40,6 +48,11 @@ public abstract class User {
 		return password;
 	}
 	
+	/**
+	 * This setter sets the password of the user
+	 * 
+	 * @param password The new password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
