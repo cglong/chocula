@@ -1,5 +1,7 @@
 package com.googlecode.chocula.client;
 
+import java.util.Date;
+
 import junit.framework.TestCase;
 
 import com.db4o.ObjectSet;
@@ -120,5 +122,29 @@ public class TestClient extends TestCase {
 		Patient bobSaget = Storage.getInstance().findPatient(firstname, lastname);
 		assertEquals(firstname, bobSaget.getFirstname());
 		assertEquals(lastname, bobSaget.getLastname());
+	}
+	
+	public void testCRUDAppointment() {
+		Date date = new Date();
+		Doctor doctor = new Doctor(null, null);
+		String reason = "cough";
+		Patient patient = new Patient(null, null);
+		ObjectSet<Appointment> result;
+		
+		Appointment appointment = Storage.getInstance().createAppointment(date, doctor, reason, patient);
+		assertTrue(appointment != null);
+		
+		result = Storage.getInstance().readAppointment(date, doctor, reason, patient);
+		assertTrue(result.next() != null);
+		
+		reason = "sneeze";
+		Storage.getInstance().updateAppointment(appointment, date, doctor, reason, patient);
+		result = Storage.getInstance().readAppointment(date, doctor, reason, patient);
+		appointment = result.next();
+		assertEquals(reason, appointment.getReason());
+		
+		Storage.getInstance().deleteAppointment(appointment);
+		result = Storage.getInstance().readAppointment(date, doctor, reason, patient);
+		assertTrue(result.next() == null);
 	}
 }
