@@ -27,6 +27,9 @@ public class TestClient extends TestCase {
 		Login.getInstance().login("grape", "jelly");
 		assertFalse(Login.getInstance().isLoggedIn());
 		assertFalse(Login.getInstance().canTry());
+		
+		//Make it so that it resets.
+		
 	}
 	
 	public void testCRUDPatient() {
@@ -216,6 +219,9 @@ public class TestClient extends TestCase {
 		Doctor doctor = new Doctor(null, null);
 		String itemizedName = "blood work";
 		Integer itemizedCost = 100;
+		//Add method for adding items to the invoice
+		//Add lists of names and associated lists of costs
+		//Or a dictionary type object (hashset, for instance) mapping names to costs
 		
 		Invoice invoice = new Invoice(patient, date, doctor, itemizedName, itemizedCost);
 		assertTrue(invoice != null);
@@ -227,7 +233,7 @@ public class TestClient extends TestCase {
 	}
 	
 	public void testLogging() {
-		Exception e = new Exception();
+		Exception e = new Exception("This sucks");
 		String test = "test";
 		ErrorEntry ee = Storage.getInstance().createExpectedErrorEntry(e, test);
 		assertTrue(ee != null);
