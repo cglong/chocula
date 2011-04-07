@@ -6,7 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class MainFrame extends JFrame {
 
@@ -40,7 +41,11 @@ public class MainFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		MainPanel panel = new MainPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
+		contentPane.add(panel, BorderLayout.WEST);
+		
+		JLabel welcomeLabel = new JLabel("Welcome to Chocula!");
+		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(welcomeLabel, BorderLayout.CENTER);
 	}
 
 }
