@@ -5,13 +5,13 @@ import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-public class MainPanel extends JPanel {
+public class MainPanel extends JPanel implements UIInfo {
 
 	/**
 	 * Create the panel.
 	 */
 	public MainPanel() {
-		setBounds(0, 0, 50, 300);
+		setBounds(0, 0, WINDOWWIDTH-PANELWIDTH, WINDOWHEIGHT);
 		JButton btnViewPatients = new JButton("View Patients");
 		
 		JButton btnViewAppointments = new JButton("View Appointments");
