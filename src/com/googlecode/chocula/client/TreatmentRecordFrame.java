@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.CardLayout;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import javax.swing.SwingConstants;
@@ -42,7 +41,7 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				if (changed) {
-					
+
 				}
 			}
 		});
@@ -50,43 +49,44 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 		getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Treatment Record");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel.setBounds(311, 10, 170, 34);
+		lblNewLabel.setFont(new Font("宋体", Font.BOLD, 20));
+		// lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblNewLabel.setBounds(291, 10, 262, 34);
 		getContentPane().add(lblNewLabel);
 
 		JLabel lblTreatingDoctor = new JLabel("Treating Doctor: ");
-		lblTreatingDoctor.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblTreatingDoctor.setFont(new Font("宋体", Font.PLAIN, 12));
 		lblTreatingDoctor.setBounds(10, 59, 109, 22);
 		getContentPane().add(lblTreatingDoctor);
 
 		JLabel lblDateAndTime = new JLabel("Date and Time: ");
-		lblDateAndTime.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblDateAndTime.setFont(new Font("宋体", Font.PLAIN, 12));
+		// lblDateAndTime.setFont(new Font("Lucida Bright", Font.PLAIN, 12));
 		lblDateAndTime.setBounds(10, 130, 109, 22);
 		getContentPane().add(lblDateAndTime);
 
 		JLabel lblAttendingNurse = new JLabel("Attending Nurse: ");
-		lblAttendingNurse.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblAttendingNurse.setFont(new Font("宋体", Font.PLAIN, 12));
 		lblAttendingNurse.setBounds(10, 206, 109, 22);
 		getContentPane().add(lblAttendingNurse);
 
 		JLabel lblDoctorsOrders = new JLabel("Doctors Orders:");
-		lblDoctorsOrders.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblDoctorsOrders.setFont(new Font("宋体", Font.PLAIN, 12));
 		lblDoctorsOrders.setBounds(10, 279, 109, 22);
 		getContentPane().add(lblDoctorsOrders);
 
 		JLabel lblChiefComplaintsymptoms = new JLabel("Vital Signs: ");
-		lblChiefComplaintsymptoms.setFont(new Font("Times New Roman",
-				Font.PLAIN, 14));
+		lblChiefComplaintsymptoms.setFont(new Font("宋体", Font.PLAIN, 12));
 		lblChiefComplaintsymptoms.setBounds(10, 414, 137, 22);
 		getContentPane().add(lblChiefComplaintsymptoms);
 
 		JLabel label = new JLabel("Chief Complaint: ");
-		label.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		label.setFont(new Font("宋体", Font.PLAIN, 12));
 		label.setBounds(10, 349, 137, 22);
 		getContentPane().add(label);
 
 		JLabel lblDiagnosis = new JLabel("Diagnosis: ");
-		lblDiagnosis.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblDiagnosis.setFont(new Font("宋体", Font.PLAIN, 12));
 		lblDiagnosis.setBounds(10, 482, 137, 22);
 		getContentPane().add(lblDiagnosis);
 
