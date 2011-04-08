@@ -232,6 +232,29 @@ public class TestClient extends TestCase {
 		assertEquals(itemizedCost, invoice.getItemizedCost().get(0));
 	}
 	
+	public void testCreateInvoice2() {
+		Patient patient = new Patient(null, null);
+		patient.setFirstname("Squatty");
+		patient.setLastname("The Hobo");
+		
+		Date date = new Date();
+		Doctor doctor = new Doctor(null, null);
+		//is there a limit to how long the string can be?
+		String itemizedName = "put in a machine and lots of tests were done and it turned out he had a medical condition so then the doctor did some more tests to hopefully figure out how to cure him but his condition is incurable so some treatments were presecribed insted.";
+		Integer itemizedCost = 999100;
+		//Add method for adding items to the invoice
+		//Add lists of names and associated lists of costs
+		//Or a dictionary type object (hashset, for instance) mapping names to costs
+		
+		Invoice invoice = new Invoice(patient, date, doctor, itemizedName, itemizedCost);
+		assertTrue(invoice != null);
+		assertEquals("Squatty The Hobo", invoice.getPatientName2());
+		assertEquals(date, invoice.getDate());
+		assertEquals(doctor, invoice.getDoctorSeen());
+		assertEquals(itemizedName, invoice.getItemizedName().getItem(0));
+		assertEquals(itemizedCost, invoice.getItemizedCost().get(0));
+	}
+	
 	public void testLogging() {
 		Exception e = new Exception("This sucks");
 		String test = "test";
