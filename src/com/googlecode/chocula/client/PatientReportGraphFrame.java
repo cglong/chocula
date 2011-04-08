@@ -33,15 +33,15 @@ public class PatientReportGraphFrame extends JFrame implements UIInfo {
 		getContentPane().setLayout(null);
 
 		JLabel lblPatientHealthHistory = new JLabel("Patient Health History");
-		lblPatientHealthHistory.setFont(new Font("Times New Roman", Font.PLAIN,
+		lblPatientHealthHistory.setFont(new Font("ËÎÌו", Font.PLAIN,
 				16));
 		lblPatientHealthHistory.setBounds(10, 43, 218, 15);
 		getContentPane().add(lblPatientHealthHistory);
 
 		JLabel lblPatientChartReport = new JLabel("Patient Chart Report Graph");
 		lblPatientChartReport
-				.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblPatientChartReport.setBounds(266, 10, 277, 15);
+				.setFont(new Font("ËÎÌו", Font.BOLD, 20));
+		lblPatientChartReport.setBounds(236, 10, 307, 15);
 		getContentPane().add(lblPatientChartReport);
 
 		table = new JTable();
@@ -49,12 +49,12 @@ public class PatientReportGraphFrame extends JFrame implements UIInfo {
 		getContentPane().add(table);
 
 		JLabel lblIncomeStatement = new JLabel("Income Statement: ");
-		lblIncomeStatement.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblIncomeStatement.setFont(new Font("ËÎÌו", Font.PLAIN, 16));
 		lblIncomeStatement.setBounds(10, 436, 218, 15);
 		getContentPane().add(lblIncomeStatement);
 
 		textField = new JTextField();
-		textField.setBounds(131, 434, 580, 21);
+		textField.setBounds(155, 434, 556, 21);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 	}

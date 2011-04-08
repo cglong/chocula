@@ -50,7 +50,6 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 
 		JLabel lblNewLabel = new JLabel("Treatment Record");
 		lblNewLabel.setFont(new Font("ËÎÌו", Font.BOLD, 20));
-		// lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel.setBounds(291, 10, 262, 34);
 		getContentPane().add(lblNewLabel);
 
