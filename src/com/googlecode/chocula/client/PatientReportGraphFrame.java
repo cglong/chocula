@@ -32,6 +32,7 @@ public class PatientReportGraphFrame extends JFrame implements UIInfo {
 	 * Create the frame.
 	 */
 	public PatientReportGraphFrame() {
+		setTitle("Patient Chart Report Graph");
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -53,11 +54,6 @@ public class PatientReportGraphFrame extends JFrame implements UIInfo {
 		lblPatientHealthHistory.setFont(new Font("ËÎÌו", Font.PLAIN, 16));
 		lblPatientHealthHistory.setBounds(10, 43, 218, 15);
 		getContentPane().add(lblPatientHealthHistory);
-
-		JLabel lblPatientChartReport = new JLabel("Patient Chart Report Graph");
-		lblPatientChartReport.setFont(new Font("ËÎÌו", Font.BOLD, 20));
-		lblPatientChartReport.setBounds(236, 10, 307, 15);
-		getContentPane().add(lblPatientChartReport);
 
 		table = new JTable();
 		table.setBounds(76, 80, 635, 381);

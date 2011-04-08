@@ -68,5 +68,10 @@ public class IncomeStatementPanel extends JPanel implements UIInfo{
 		textField_4.setColumns(10);
 		textField_4.setBounds(210, 393, 580, 21);
 		add(textField_4);
+		
+		JLabel lblNewLabel_1 = new JLabel("Income Statement");
+		lblNewLabel_1.setFont(new Font("ËÎÌו", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(18, 26, 234, 15);
+		add(lblNewLabel_1);
 	}
 }
