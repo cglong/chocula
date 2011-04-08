@@ -27,7 +27,6 @@ public class PatientReportGraphFrame extends JFrame implements UIInfo {
 
 	private JPanel contentPane;
 	private JTable table;
-	private JTextField textField;
 
 	/**
 	 * Create the frame.
@@ -61,17 +60,7 @@ public class PatientReportGraphFrame extends JFrame implements UIInfo {
 		getContentPane().add(lblPatientChartReport);
 
 		table = new JTable();
-		table.setBounds(76, 80, 635, 305);
+		table.setBounds(76, 80, 635, 381);
 		getContentPane().add(table);
-
-		JLabel lblIncomeStatement = new JLabel("Income Statement: ");
-		lblIncomeStatement.setFont(new Font("ËÎÌו", Font.PLAIN, 16));
-		lblIncomeStatement.setBounds(10, 436, 218, 15);
-		getContentPane().add(lblIncomeStatement);
-
-		textField = new JTextField();
-		textField.setBounds(155, 434, 556, 21);
-		getContentPane().add(textField);
-		textField.setColumns(10);
 	}
 }
