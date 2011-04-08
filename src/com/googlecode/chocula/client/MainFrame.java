@@ -40,12 +40,20 @@ public class MainFrame extends JFrame implements UIInfo {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		MainSidebarPanel panel = new MainSidebarPanel();
-		contentPane.add(panel, BorderLayout.WEST);
-		
-		JLabel welcomeLabel = new JLabel("Welcome to Chocula!");
-		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(welcomeLabel, BorderLayout.CENTER);
+		updateLoggedInPanel();
 	}
-
+	
+	private void updateLoggedInPanel() {
+		if (Login.getInstance().isLoggedIn()) {
+			MainSidebarPanel sidebarPanel = new MainSidebarPanel();
+			contentPane.add(sidebarPanel, BorderLayout.WEST);
+			
+			JLabel welcomeLabel = new JLabel("Welcome to Chocula!");
+			welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			contentPane.add(welcomeLabel, BorderLayout.CENTER);
+		} else {
+			LoginPanel loginPanel = new LoginPanel();
+			contentPane.add(loginPanel, BorderLayout.CENTER);
+		}
+	}
 }

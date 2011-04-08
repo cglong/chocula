@@ -22,7 +22,7 @@ public class LoginPanel extends JPanel implements UIInfo {
 	 * Create the panel.
 	 */
 	public LoginPanel() {
-		setBounds(0, 0, WINDOWWIDTH/2, WINDOWHEIGHT/2);
+		setBounds(0, 0, WINDOWWIDTH, WINDOWHEIGHT);
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,
@@ -35,7 +35,31 @@ public class LoginPanel extends JPanel implements UIInfo {
 				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,
 				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
 				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -68,33 +92,46 @@ public class LoginPanel extends JPanel implements UIInfo {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		lblWelcomeTo = new JLabel("Welcome to");
 		lblWelcomeTo.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblWelcomeTo, "10, 6");
+		add(lblWelcomeTo, "28, 14");
 		
 		lblChocula = new JLabel("CHOCULA");
-		lblChocula.setHorizontalAlignment(SwingConstants.CENTER);
 		lblChocula.setFont(lblChocula.getFont().deriveFont(lblChocula.getFont().getStyle() | Font.BOLD, 24f));
-		add(lblChocula, "10, 8");
+		lblChocula.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblChocula, "28, 16");
 		
 		JLabel lblUsername = new JLabel("Username:");
-		add(lblUsername, "8, 14, right, default");
+		add(lblUsername, "26, 28");
 		
 		textFieldUsername = new JTextField();
-		add(textFieldUsername, "10, 14, fill, default");
+		add(textFieldUsername, "28, 28, fill, default");
 		textFieldUsername.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password:");
-		add(lblPassword, "8, 16, right, default");
+		add(lblPassword, "26, 30, right, default");
 		
 		textFieldPassword = new JTextField();
-		add(textFieldPassword, "10, 16, fill, default");
+		add(textFieldPassword, "28, 30, fill, default");
 		textFieldPassword.setColumns(10);
 		
 		btnLogin = new JButton("Login");
-		add(btnLogin, "10, 22, center, center");
+		add(btnLogin, "28, 38");
+		
 	}
 
 }
