@@ -39,7 +39,7 @@ public class TestClient extends TestCase {
 		String lastname = "Patient";
 		String address = "123 Fake Street";
 		String phoneNumber = "404-555-5555";
-		String gender = "male";
+		String gender = "Male";
 		String pharmacy = "CVS";
 		String insuranceCarrier = "Aetna";
 		int age = 25;

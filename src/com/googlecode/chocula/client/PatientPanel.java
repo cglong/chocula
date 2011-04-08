@@ -1,19 +1,29 @@
 package com.googlecode.chocula.client;
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
+
+import com.db4o.ObjectSet;
+import com.googlecode.chocula.core.Patient;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 public class PatientPanel extends JPanel implements UIInfo {
 	private JTextField textFieldFirstName;
 	private JTextField textFieldLastName;
 	private JTextField textFieldAddress;
 	private JTextField textFieldPhoneNumber;
+	private JComboBox comboBoxGender;
 	private JTextField textFieldPharmacy;
 	private JTextField textFieldInsuranceCarrier;
 	private JTextField textFieldAge;
@@ -111,7 +121,7 @@ public class PatientPanel extends JPanel implements UIInfo {
 		
 		JLabel lblGender = new JLabel("Gender:");
 		add(lblGender, "2, 18, right, default");
-		JComboBox comboBoxGender = new JComboBox(genderChoices);
+		comboBoxGender = new JComboBox(genderChoices);
 		add(comboBoxGender, "4, 18, fill, default");
 		
 		JLabel lblPharmacy = new JLabel("Pharmacy:");
@@ -141,6 +151,29 @@ public class PatientPanel extends JPanel implements UIInfo {
 		textFieldAllergies = new JTextField();
 		add(textFieldAllergies, "4, 34, fill, default");
 		textFieldAllergies.setColumns(10);
+		
+		JButton btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new SearchButtonListener());
+		add(btnSearch, "4, 48, right, default");
 	}
-
+	
+	private class SearchButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String firstname = textFieldFirstName.getText();
+			String lastname = textFieldLastName.getText();
+			String address = textFieldAddress.getText();
+			String phoneNumber = textFieldPhoneNumber.getText();
+			String gender = comboBoxGender.toString();
+			String pharmacy = textFieldPharmacy.getText();
+			String insuranceCarrier = textFieldInsuranceCarrier.getText();
+			
+			ObjectSet<Patient> result = Storage.getInstance().readPatient(null, null, firstname, lastname, address, phoneNumber, gender, pharmacy, insuranceCarrier, 0, null, null);
+			Patient[] patients = new Patient[result.size()];
+			for (int i = 0; i < result.size(); i++)
+				patients[i] = result.next();
+			
+			Patient choice = (Patient)JOptionPane.showInputDialog((Component) e.getSource(), "Select a patient to view:",
+					"Select Patient", JOptionPane.PLAIN_MESSAGE, null, patients, null);
+		}
+	}
 }
