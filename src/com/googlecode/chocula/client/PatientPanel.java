@@ -154,7 +154,7 @@ public class PatientPanel extends JPanel implements UIInfo {
 		
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new SearchButtonListener());
-		add(btnSearch, "4, 48, right, default");
+		add(btnSearch, "4, 44, right, default");
 	}
 	
 	private class SearchButtonListener implements ActionListener {
