@@ -67,12 +67,8 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 			}
 		});
 		setBounds(100, 100, WINDOWWIDTH, WINDOWHEIGHT);
+		setTitle("Treatment Record");
 		getContentPane().setLayout(null);
-
-		JLabel lblNewLabel = new JLabel("Treatment Record");
-		lblNewLabel.setFont(new Font("ËÎÌו", Font.BOLD, 20));
-		lblNewLabel.setBounds(291, 10, 262, 34);
-		getContentPane().add(lblNewLabel);
 
 		JLabel lblTreatingDoctor = new JLabel("Treating Doctor: ");
 		lblTreatingDoctor.setFont(new Font("ËÎÌו", Font.PLAIN, 12));
