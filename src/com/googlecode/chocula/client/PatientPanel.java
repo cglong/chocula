@@ -47,6 +47,36 @@ public class PatientPanel extends JPanel implements UIInfo {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		JLabel lblFirstName = new JLabel("First Name:");
@@ -56,60 +86,60 @@ public class PatientPanel extends JPanel implements UIInfo {
 		add(textFieldFirstName, "4, 2, fill, default");
 		textFieldFirstName.setColumns(10);
 		
+		String[] genderChoices = {"Male", "Female"};
+		
 		JLabel lblLastName = new JLabel("Last Name:");
-		add(lblLastName, "2, 4, right, default");
+		add(lblLastName, "2, 6, right, default");
 		
 		textFieldLastName = new JTextField();
-		add(textFieldLastName, "4, 4, fill, default");
+		add(textFieldLastName, "4, 6, fill, default");
 		textFieldLastName.setColumns(10);
 		
 		JLabel lblAddress = new JLabel("Address:");
-		add(lblAddress, "2, 6, right, default");
+		add(lblAddress, "2, 10, right, default");
 		
 		textFieldAddress = new JTextField();
-		add(textFieldAddress, "4, 6, fill, default");
+		add(textFieldAddress, "4, 10, fill, default");
 		textFieldAddress.setColumns(10);
 		
 		JLabel lblPhoneNumber = new JLabel("Phone Number:");
-		add(lblPhoneNumber, "2, 8, right, default");
+		add(lblPhoneNumber, "2, 14, right, default");
 		
 		textFieldPhoneNumber = new JTextField();
-		add(textFieldPhoneNumber, "4, 8, fill, default");
+		add(textFieldPhoneNumber, "4, 14, fill, default");
 		textFieldPhoneNumber.setColumns(10);
 		
 		JLabel lblGender = new JLabel("Gender:");
-		add(lblGender, "2, 10, right, default");
-		
-		String[] genderChoices = {"Male", "Female"};
+		add(lblGender, "2, 18, right, default");
 		JComboBox comboBoxGender = new JComboBox(genderChoices);
-		add(comboBoxGender, "4, 10, fill, default");
+		add(comboBoxGender, "4, 18, fill, default");
 		
 		JLabel lblPharmacy = new JLabel("Pharmacy:");
-		add(lblPharmacy, "2, 12, right, default");
+		add(lblPharmacy, "2, 22, right, default");
 		
 		textFieldPharmacy = new JTextField();
-		add(textFieldPharmacy, "4, 12, fill, default");
+		add(textFieldPharmacy, "4, 22, fill, default");
 		textFieldPharmacy.setColumns(10);
 		
 		JLabel lblInsuranceCarrier = new JLabel("Insurance Carrier:");
-		add(lblInsuranceCarrier, "2, 14, right, default");
+		add(lblInsuranceCarrier, "2, 26, right, default");
 		
 		textFieldInsuranceCarrier = new JTextField();
-		add(textFieldInsuranceCarrier, "4, 14, fill, default");
+		add(textFieldInsuranceCarrier, "4, 26, fill, default");
 		textFieldInsuranceCarrier.setColumns(10);
 		
 		JLabel lblAge = new JLabel("Age:");
-		add(lblAge, "2, 16, right, default");
+		add(lblAge, "2, 30, right, default");
 		
 		textFieldAge = new JTextField();
-		add(textFieldAge, "4, 16, fill, default");
+		add(textFieldAge, "4, 30, fill, default");
 		textFieldAge.setColumns(10);
 		
 		JLabel lblAllergies = new JLabel("Allergies:");
-		add(lblAllergies, "2, 18, right, default");
+		add(lblAllergies, "2, 34, right, default");
 		
 		textFieldAllergies = new JTextField();
-		add(textFieldAllergies, "4, 18, fill, default");
+		add(textFieldAllergies, "4, 34, fill, default");
 		textFieldAllergies.setColumns(10);
 	}
 
