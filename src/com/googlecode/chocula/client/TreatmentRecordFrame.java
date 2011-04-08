@@ -3,9 +3,11 @@ package com.googlecode.chocula.client;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.CardLayout;
@@ -39,19 +41,28 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 	/**
 	 * Create the frame.
 	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TreatmentRecordFrame frame = new TreatmentRecordFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 	public TreatmentRecordFrame() {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				if (changed) {
-					JOptionPane.showConfirmDialog(rootPane, "ABC");
-				}
-			}
-
-			@Override
-			public void windowClosed(WindowEvent arg0) {
-				if (changed) {
-					JOptionPane.showConfirmDialog(rootPane, "ABC");
+				if (!changed) {
+					int n = JOptionPane.showConfirmDialog(rootPane, "ABC");
+					if (n == JOptionPane.CANCEL_OPTION) {
+						setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+					}
 				}
 			}
 		});
@@ -70,7 +81,6 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 
 		JLabel lblDateAndTime = new JLabel("Date and Time: ");
 		lblDateAndTime.setFont(new Font("ËÎÌו", Font.PLAIN, 12));
-		// lblDateAndTime.setFont(new Font("Lucida Bright", Font.PLAIN, 12));
 		lblDateAndTime.setBounds(10, 130, 109, 22);
 		getContentPane().add(lblDateAndTime);
 
