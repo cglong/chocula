@@ -5,12 +5,12 @@ import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-public class MainPanel extends JPanel implements UIInfo {
+public class MainSidebarPanel extends JPanel implements UIInfo {
 
 	/**
 	 * Create the panel.
 	 */
-	public MainPanel() {
+	public MainSidebarPanel() {
 		setBounds(0, 0, SIDEBARWIDTH, WINDOWHEIGHT);
 		JButton btnViewPatients = new JButton("View Patients");
 		

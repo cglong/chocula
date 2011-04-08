@@ -40,7 +40,7 @@ public class MainFrame extends JFrame implements UIInfo {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		MainPanel panel = new MainPanel();
+		MainSidebarPanel panel = new MainSidebarPanel();
 		contentPane.add(panel, BorderLayout.WEST);
 		
 		JLabel welcomeLabel = new JLabel("Welcome to Chocula!");
