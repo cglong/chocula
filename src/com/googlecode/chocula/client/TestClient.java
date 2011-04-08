@@ -248,7 +248,7 @@ public class TestClient extends TestCase {
 		
 		Invoice invoice = new Invoice(patient, date, doctor, itemizedName, itemizedCost);
 		assertTrue(invoice != null);
-		assertEquals("Squatty The Hobo", invoice.getPatientName2());
+		assertEquals("Squatty The Hobo", invoice.getPatientName());
 		assertEquals(date, invoice.getDate());
 		assertEquals(doctor, invoice.getDoctorSeen());
 		assertEquals(itemizedName, invoice.getItemizedName().getItem(0));
