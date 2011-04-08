@@ -11,7 +11,7 @@ public class MainPanel extends JPanel implements UIInfo {
 	 * Create the panel.
 	 */
 	public MainPanel() {
-		setBounds(0, 0, WINDOWWIDTH-PANELWIDTH, WINDOWHEIGHT);
+		setBounds(0, 0, SIDEBARWIDTH, WINDOWHEIGHT);
 		JButton btnViewPatients = new JButton("View Patients");
 		
 		JButton btnViewAppointments = new JButton("View Appointments");
