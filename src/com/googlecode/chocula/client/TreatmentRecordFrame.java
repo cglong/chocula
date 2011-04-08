@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
@@ -17,6 +18,8 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -41,7 +44,14 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				if (changed) {
+					JOptionPane.showConfirmDialog(rootPane, "ABC");
+				}
+			}
 
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+				if (changed) {
+					JOptionPane.showConfirmDialog(rootPane, "ABC");
 				}
 			}
 		});
@@ -90,12 +100,18 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 		getContentPane().add(lblDiagnosis);
 
 		textField = new JTextField();
+		textField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				changed = true;
+			}
+		});
 		textField.addInputMethodListener(new InputMethodListener() {
 			public void caretPositionChanged(InputMethodEvent arg0) {
 				changed = true;
 			}
 
 			public void inputMethodTextChanged(InputMethodEvent arg0) {
+				changed = true;
 			}
 		});
 		textField.setBounds(129, 60, 580, 21);
