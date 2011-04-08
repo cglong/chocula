@@ -61,12 +61,8 @@ public class PatientInvoiceFrame extends JFrame implements UIInfo {
 			}
 		});
 		setBounds(100, 100, WINDOWWIDTH, WINDOWHEIGHT);
+		setTitle("Patient Invoice");
 		getContentPane().setLayout(null);
-
-		JLabel lblPatientInvoice = new JLabel("Patient Invoice");
-		lblPatientInvoice.setFont(new Font("ËÎÌו", Font.BOLD, 20));
-		lblPatientInvoice.setBounds(338, 10, 242, 15);
-		getContentPane().add(lblPatientInvoice);
 
 		JLabel lblLastName = new JLabel("Last Name: ");
 		lblLastName.setFont(new Font("ËÎÌו", Font.PLAIN, 14));
