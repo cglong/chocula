@@ -58,12 +58,15 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				if (!changed) {
 					int n = JOptionPane.showConfirmDialog(rootPane, "ABC");
 					if (n == JOptionPane.CANCEL_OPTION) {
 						setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+					} else if (n == JOptionPane.NO_OPTION) {
+						setDefaultCloseOperation(EXIT_ON_CLOSE);
+					} else if (n == JOptionPane.YES_OPTION) {
+						setDefaultCloseOperation(EXIT_ON_CLOSE);
 					}
-				}
+				
 			}
 		});
 		setBounds(100, 100, WINDOWWIDTH, WINDOWHEIGHT);
