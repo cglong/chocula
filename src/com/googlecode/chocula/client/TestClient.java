@@ -8,6 +8,12 @@ import com.db4o.ObjectSet;
 import com.googlecode.chocula.core.*;
 
 public class TestClient extends TestCase {
+	/**
+	 * Tests the login system. Creates a nurse, then attempts login. Following a successful login,
+	 * logs out. Then makes three false attempts to achieve lockout.
+	 * 
+	 * @author Christopher Long
+	 */
 	public void testLogin() {
 		Storage.getInstance().createNurse("peanut", "brittle");
 		Login.getInstance().login("peanut", "brittle");
@@ -32,6 +38,11 @@ public class TestClient extends TestCase {
 
 	}
 
+	/**
+	 * Tests the creation, reading, updating and deletion of a patient.
+	 * 
+	 * @author Christopher Long
+	 */
 	public void testCRUDPatient() {
 		String username = "patient";
 		String password = "pass";
@@ -73,7 +84,12 @@ public class TestClient extends TestCase {
 				insuranceCarrier, age, allergies, medicalHistory);
 		assertFalse(result.hasNext());
 	}
-
+	
+	/**
+	 * Tests the creation, reading, updating and deletion of a nurse.
+	 * 
+	 * @author Christopher Long
+	 */
 	public void testCRUDNurse() {
 		String username = "nurse";
 		String password = "pass";
@@ -95,7 +111,12 @@ public class TestClient extends TestCase {
 		result = Storage.getInstance().readNurse(username, password);
 		assertFalse(result.hasNext());
 	}
-
+	
+	/**
+	 * Tests the creation, reading, updating and deletion of a doctor.
+	 * 
+	 * @author Christopher Long
+	 */
 	public void testCRUDDoctor() {
 		String username = "doctor";
 		String password = "pass";
@@ -118,6 +139,12 @@ public class TestClient extends TestCase {
 		assertFalse(result.hasNext());
 	}
 
+	/**
+	 * Tests the lookup of a patient by name only. Creates and stores the patient in the database,
+	 * then attempts to find it using its name.
+	 * 
+	 * @author Christopher Long
+	 */
 	public void testPatientLookup() {
 		String firstname = "Bob", lastname = "Saget";
 		Storage.getInstance().createPatient(null, null, firstname, lastname,
@@ -127,7 +154,12 @@ public class TestClient extends TestCase {
 		assertEquals(firstname, bobSaget.getFirstname());
 		assertEquals(lastname, bobSaget.getLastname());
 	}
-
+	
+	/**
+	 * Tests the creation, reading, updating and deletion of an appointment.
+	 * 
+	 * @author Christopher Long
+	 */
 	public void testCRUDAppointment() {
 		Date date = new Date();
 		Doctor doctor = new Doctor(null, null);
@@ -156,7 +188,12 @@ public class TestClient extends TestCase {
 				patient);
 		assertFalse(result.hasNext());
 	}
-
+	
+	/**
+	 * Tests the creation, reading, updating and deletion of a treatment record.
+	 * 
+	 * @author Christopher Long
+	 */
 	public void testCRUDTreatmentRecord() {
 		Doctor doctor = new Doctor(null, null);
 		Date date = new Date();
@@ -190,7 +227,12 @@ public class TestClient extends TestCase {
 				doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient);
 		assertFalse(result.hasNext());
 	}
-
+	
+	/**
+	 * Tests the creation, reading, updating and deletion of a doctor's order.
+	 * 
+	 * @author Christopher Long
+	 */
 	public void testCRUDDoctorsOrders() {
 		String prescriptions = "Ritalin";
 		String labWork = "blood drawn";
@@ -221,6 +263,9 @@ public class TestClient extends TestCase {
 		assertFalse(result.hasNext());
 	}
 
+	/**
+	 * @author Elise Prado
+	 */
 	public void testCreateInvoice() {
 		Patient patient = new Patient(null, null);
 		patient.setFirstname("Bob");
@@ -244,7 +289,11 @@ public class TestClient extends TestCase {
 		assertEquals(itemizedName, invoice.getItemizedName().getItem(0));
 		assertEquals(itemizedCost, invoice.getItemizedCost().get(0));
 	}
-
+	
+	
+	/**
+	 * @author Elise Prado
+	 */
 	public void testCreateInvoice2() {
 		Patient patient = new Patient(null, null);
 		patient.setFirstname("Squatty");
@@ -270,6 +319,12 @@ public class TestClient extends TestCase {
 		assertEquals(itemizedCost, invoice.getItemizedCost().get(0));
 	}
 
+	/**
+	 * Tests the error logging system. Creates a new Exception, then stores in the database.
+	 * Then reads the database for any exceptions and verifies the Exception was added.
+	 * 
+	 * @author Christopher Long
+	 */
 	public void testLogging() {
 		Exception e = new Exception("This sucks");
 		String test = "test";
