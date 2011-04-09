@@ -345,6 +345,10 @@ public class TestClient extends TestCase {
 
 	/**
 	 * JUnit test to create, read, update, and delete a doctor's order
+	 * For create, certain parameters will be added to DoctorsOrders, then add it to database, result will check if it is there
+	 * For read, the created DoctorsOrders will be retrieved from database, and result will check
+	 * For update, prescription will be changed, result will check if the prescription is the latest one
+	 * For delete, the created DoctorsOrders will be removed from database, result will check if it is removed
 	 * 
 	 * @author Ye Zhefan
 	 */
