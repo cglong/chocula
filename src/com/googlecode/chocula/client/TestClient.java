@@ -264,7 +264,10 @@ public class TestClient extends TestCase {
 	}
 
 	/**
-	 * @author Elise Prado
+	 * Creates a new invoice based on provided data and verifies the Invoice properly represents
+	 * the information.
+	 * 
+	 * @author Christopher Long
 	 */
 	public void testCreateInvoice() {
 		Patient patient = new Patient(null, null);
