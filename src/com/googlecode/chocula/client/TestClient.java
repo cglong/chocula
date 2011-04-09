@@ -39,7 +39,8 @@ public class TestClient extends TestCase {
 	}
 
 	/**
-	 * Tests the creation, reading, updating and deletion of a patient.
+	 * Tests the creation, reading, updating and deletion of a patient within the database.
+	 * Checks that a new patient can be created, then found, then changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -86,7 +87,8 @@ public class TestClient extends TestCase {
 	}
 	
 	/**
-	 * Tests the creation, reading, updating and deletion of a nurse.
+	 * Tests the creation, reading, updating and deletion of a nurse within the database.
+	 * Checks that a new nurse can be created, then found, then changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -113,7 +115,8 @@ public class TestClient extends TestCase {
 	}
 	
 	/**
-	 * Tests the creation, reading, updating and deletion of a doctor.
+	 * Tests the creation, reading, updating and deletion of a doctor within the database.
+	 * Checks that a new doctor can be created, then found, then changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -156,7 +159,8 @@ public class TestClient extends TestCase {
 	}
 	
 	/**
-	 * Tests the creation, reading, updating and deletion of an appointment.
+	 * Tests the creation, reading, updating and deletion of an appointment within the database.
+	 * Checks that a new appointment can be created, then found, then changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -190,7 +194,8 @@ public class TestClient extends TestCase {
 	}
 	
 	/**
-	 * Tests the creation, reading, updating and deletion of a treatment record.
+	 * Tests the creation, reading, updating and deletion of a treatment record within the database.
+	 * Checks that a new treatment record can be created, then found, then changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -229,7 +234,8 @@ public class TestClient extends TestCase {
 	}
 	
 	/**
-	 * Tests the creation, reading, updating and deletion of a doctor's order.
+	 * Tests the creation, reading, updating and deletion of a doctor's order within the database.
+	 * Checks that a new doctor's order can be created, then found, then changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
