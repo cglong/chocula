@@ -155,7 +155,8 @@ public class LoginPanel extends JPanel implements UIInfo {
 				sidebar.updateButtons();
 				textFieldUsername.setText("");
 				textFieldPassword.setText("");
-			}
+			} else if (!Login.getInstance().canTry())
+				btnLogin.setEnabled(false);
 		}
 	}
 }
