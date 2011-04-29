@@ -175,11 +175,11 @@ public class PatientPanel extends JPanel implements UIInfo {
 			ObjectSet<Patient> result = Storage.getInstance().readPatient(null,
 					null, firstname, lastname, address, phoneNumber, gender,
 					pharmacy, insuranceCarrier, null, 0, null, null);
-			String[] patients = new String[result.size()];
+			Patient[] patients = new Patient[result.size()];
 			for (int i = 0; i < result.size(); i++)
-				patients[i] = result.next().getName();
+				patients[i] = result.next();
 
-			String choice = (String) JOptionPane.showInputDialog(
+			Patient choice = (Patient) JOptionPane.showInputDialog(
 					(Component) e.getSource(), "Select a patient to view:",
 					"Select Patient", JOptionPane.PLAIN_MESSAGE, null,
 					patients, null);

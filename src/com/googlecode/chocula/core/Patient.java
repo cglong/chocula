@@ -286,4 +286,9 @@ public class Patient extends User implements IPatient {
 	public String getName() {
 		return firstname + " " + lastname;
 	}
+	
+	@Override
+	public String toString() {
+		return getName();
+	}
 }
