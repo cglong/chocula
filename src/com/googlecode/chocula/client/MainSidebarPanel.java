@@ -35,6 +35,7 @@ public class MainSidebarPanel extends JPanel implements UIInfo {
 		add(btnViewAppointments);
 		
 		btnViewReports = new JButton("View Reports");
+		btnViewReports.addActionListener(new ReportsListener());
 		add(btnViewReports);
 		
 		btnViewUsers = new JButton("View Users");
@@ -89,6 +90,12 @@ public class MainSidebarPanel extends JPanel implements UIInfo {
 	private class AppointmentsListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			parent.showNewPanel(new AppointmentsPanel(), "Appointments");
+		}
+	}
+	
+	private class ReportsListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			parent.showNewPanel(new IncomeStatementPanel(null), "Income Statement");
 		}
 	}
 	
