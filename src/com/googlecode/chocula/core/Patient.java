@@ -60,7 +60,8 @@ public class Patient extends User implements IPatient {
 	}
 
 	/**
-	 * This constructor creates a patient with just a first and last name
+	 * This constructor creates a patient with just a first and last name and
+	 * date
 	 * 
 	 * @param firstname
 	 *            The first name of the patient
@@ -70,6 +71,18 @@ public class Patient extends User implements IPatient {
 	public Patient(String firstname, String lastname, String date) {
 		this(null, null, firstname, lastname, null, null, null, null, null,
 				date, 0, null, null);
+	}
+
+	/**
+	 * This constructor creates a patient with just a first and last name and
+	 * date
+	 * 
+	 * @param firstname
+	 * @param lastname
+	 */
+	public Patient(String firstname, String lastname) {
+		this(null, null, firstname, lastname, null, null, null, null, null,
+				null, 0, null, null);
 	}
 
 	/**

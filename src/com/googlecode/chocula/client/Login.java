@@ -10,18 +10,18 @@ import com.googlecode.chocula.core.User;
 public class Login {
 	private static Login instance = null;
 	private User user = null;
-	
+
 	/**
-	 *When this hits 3, the person is locked out and the counter reset.
+	 * When this hits 3, the person is locked out and the counter reset.
 	 */
 	private int lockout = 0;
-	
+
 	/**
 	 * This constructor exists only to prevent instantiation.
 	 */
 	protected Login() {
 	}
-	
+
 	/**
 	 * Singleton method
 	 * 
@@ -32,21 +32,23 @@ public class Login {
 			instance = new Login();
 		return instance;
 	}
-	
+
 	/**
-	 * This method will do a check to see if the username/password combo
-	 * appears in the database of username/password combos, and will return
-	 * the username of the one that fits.
+	 * This method will do a check to see if the username/password combo appears
+	 * in the database of username/password combos, and will return the username
+	 * of the one that fits.
 	 * 
-	 * @param username The username to check for
-	 * @param password The password to check for
+	 * @param username
+	 *            The username to check for
+	 * @param password
+	 *            The password to check for
 	 */
 	public void login(String username, String password) {
 		user = Storage.getInstance().readUser(username, password);
 		if (user == null && canTry())
 			lockout++;
 	}
-	
+
 	/**
 	 * Checks if a user is currently logged in
 	 * 
@@ -55,7 +57,7 @@ public class Login {
 	public boolean isLoggedIn() {
 		return user != null;
 	}
-	
+
 	/**
 	 * Checks if a user has not hit lockout
 	 * 
@@ -64,7 +66,7 @@ public class Login {
 	public boolean canTry() {
 		return lockout < 3;
 	}
-	
+
 	/**
 	 * Logs the current user out by clearing information about them
 	 */
@@ -72,7 +74,7 @@ public class Login {
 		user = null;
 		lockout = 0;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}

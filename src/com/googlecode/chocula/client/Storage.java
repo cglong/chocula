@@ -74,11 +74,11 @@ public class Storage implements ServerInfo {
 	public Patient createPatient(String username, String password,
 			String firstname, String lastname, String address,
 			String phoneNumber, String gender, String pharmacy,
-			String insuranceCarrier, int age, String[] allergies,
+			String insuranceCarrier, String date, int age, String[] allergies,
 			TreatmentRecord[] medicalHistory) {
 		Patient patient = new Patient(username, password, firstname, lastname,
-				address, phoneNumber, gender, pharmacy, insuranceCarrier, age,
-				allergies, medicalHistory);
+				address, phoneNumber, gender, pharmacy, insuranceCarrier, date,
+				age, allergies, medicalHistory);
 		db.store(patient);
 		db.commit();
 		return patient;
@@ -148,11 +148,11 @@ public class Storage implements ServerInfo {
 	public ObjectSet<Patient> readPatient(String username, String password,
 			String firstname, String lastname, String address,
 			String phoneNumber, String gender, String pharmacy,
-			String insuranceCarrier, int age, String[] allergies,
+			String insuranceCarrier, String date, int age, String[] allergies,
 			TreatmentRecord[] medicalHistory) {
 		Patient proto = new Patient(username, password, firstname, lastname,
-				address, phoneNumber, gender, pharmacy, insuranceCarrier, age,
-				allergies, medicalHistory);
+				address, phoneNumber, gender, pharmacy, insuranceCarrier, date,
+				age, allergies, medicalHistory);
 		return db.queryByExample(proto);
 	}
 

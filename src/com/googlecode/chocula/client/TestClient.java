@@ -56,6 +56,7 @@ public class TestClient extends TestCase {
 		String gender = "Male";
 		String pharmacy = "CVS";
 		String insuranceCarrier = "Aetna";
+		String date = "04/05/2011";
 		int age = 25;
 		String[] allergies = { "Chocolate", "Cats" };
 		TreatmentRecord[] medicalHistory = {};
@@ -63,12 +64,13 @@ public class TestClient extends TestCase {
 
 		Patient patient = Storage.getInstance().createPatient(username,
 				password, firstname, lastname, address, phoneNumber, gender,
-				pharmacy, insuranceCarrier, age, allergies, medicalHistory);
+				pharmacy, insuranceCarrier, date, age, allergies,
+				medicalHistory);
 		assertTrue(patient != null);
 
 		result = Storage.getInstance().readPatient(username, password,
 				firstname, lastname, address, phoneNumber, gender, pharmacy,
-				insuranceCarrier, age, allergies, medicalHistory);
+				insuranceCarrier, date, age, allergies, medicalHistory);
 		assertTrue(result.hasNext());
 
 		username = "newPatient";
@@ -77,14 +79,14 @@ public class TestClient extends TestCase {
 				insuranceCarrier, age, allergies, medicalHistory);
 		result = Storage.getInstance().readPatient(username, password,
 				firstname, lastname, address, phoneNumber, gender, pharmacy,
-				insuranceCarrier, age, allergies, medicalHistory);
+				insuranceCarrier, date, age, allergies, medicalHistory);
 		patient = result.next();
 		assertEquals(username, patient.getUsername());
 
 		Storage.getInstance().deletePatient(patient);
 		result = Storage.getInstance().readPatient(username, password,
 				firstname, lastname, address, phoneNumber, gender, pharmacy,
-				insuranceCarrier, age, allergies, medicalHistory);
+				insuranceCarrier, date, age, allergies, medicalHistory);
 		assertFalse(result.hasNext());
 	}
 
@@ -155,7 +157,7 @@ public class TestClient extends TestCase {
 	public void testPatientLookup() {
 		String firstname = "Bob", lastname = "Saget";
 		Storage.getInstance().createPatient(null, null, firstname, lastname,
-				null, null, null, null, null, 0, null, null);
+				null, null, null, null, null, null, 0, null, null);
 		Patient bobSaget = Storage.getInstance().findPatient(firstname,
 				lastname);
 		assertEquals(firstname, bobSaget.getFirstname());
