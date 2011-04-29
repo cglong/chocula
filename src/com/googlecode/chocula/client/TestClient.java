@@ -65,12 +65,12 @@ public class TestClient extends TestCase {
 		Patient patient = Storage.getInstance().createPatient(username,
 				password, firstname, lastname, address, phoneNumber, gender,
 				pharmacy, insuranceCarrier, date, age, allergies,
-				medicalHistory);
+				medicalHistory, null);
 		assertTrue(patient != null);
 
 		result = Storage.getInstance().readPatient(username, password,
 				firstname, lastname, address, phoneNumber, gender, pharmacy,
-				insuranceCarrier, date, age, allergies, medicalHistory);
+				insuranceCarrier, date, age, allergies, medicalHistory, null);
 		assertTrue(result.hasNext());
 
 		username = "newPatient";
@@ -79,14 +79,14 @@ public class TestClient extends TestCase {
 				insuranceCarrier, age, allergies, medicalHistory);
 		result = Storage.getInstance().readPatient(username, password,
 				firstname, lastname, address, phoneNumber, gender, pharmacy,
-				insuranceCarrier, date, age, allergies, medicalHistory);
+				insuranceCarrier, date, age, allergies, medicalHistory, null);
 		patient = result.next();
 		assertEquals(username, patient.getUsername());
 
 		Storage.getInstance().deletePatient(patient);
 		result = Storage.getInstance().readPatient(username, password,
 				firstname, lastname, address, phoneNumber, gender, pharmacy,
-				insuranceCarrier, date, age, allergies, medicalHistory);
+				insuranceCarrier, date, age, allergies, medicalHistory, null);
 		assertFalse(result.hasNext());
 	}
 
@@ -157,7 +157,7 @@ public class TestClient extends TestCase {
 	public void testPatientLookup() {
 		String firstname = "Bob", lastname = "Saget";
 		Storage.getInstance().createPatient(null, null, firstname, lastname,
-				null, null, null, null, null, null, 0, null, null);
+				null, null, null, null, null, null, 0, null, null, null);
 		Patient bobSaget = Storage.getInstance().findPatient(firstname,
 				lastname);
 		assertEquals(firstname, bobSaget.getFirstname());
@@ -172,7 +172,7 @@ public class TestClient extends TestCase {
 	 * @author Christopher Long
 	 */
 	public void testCRUDAppointment() {
-		Date date = new Date();
+		String date = "";
 		Doctor doctor = new Doctor(null, null);
 		String reason = "cough";
 		Patient patient = new Patient(null, null);
