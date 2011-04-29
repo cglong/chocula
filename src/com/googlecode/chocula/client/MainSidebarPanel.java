@@ -41,6 +41,7 @@ public class MainSidebarPanel extends JPanel implements UIInfo {
 		add(btnViewUsers);
 		
 		btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new LogoutListener());
 		add(btnLogout);
 		
 		updateButtons();
@@ -87,6 +88,14 @@ public class MainSidebarPanel extends JPanel implements UIInfo {
 	private class AppointmentsListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			parent.showNewPanel(new AppointmentsPanel(), "Appointments");
+		}
+	}
+	
+	private class LogoutListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Login.getInstance().logout();
+			parent.showLoginPanel();
+			updateButtons();
 		}
 	}
 }

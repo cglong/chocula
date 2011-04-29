@@ -149,8 +149,11 @@ public class LoginPanel extends JPanel implements UIInfo {
 			String username = textFieldUsername.getText();
 			String password = textFieldPassword.getText();
 			Login.getInstance().login(username, password);
-			if (Login.getInstance().isLoggedIn())
+			if (Login.getInstance().isLoggedIn()) {
 				sidebar.updateButtons();
+				textFieldUsername.setText("");
+				textFieldPassword.setText("");
+			}
 		}
 	}
 }

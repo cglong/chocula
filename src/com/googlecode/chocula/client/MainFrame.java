@@ -60,4 +60,9 @@ public class MainFrame extends JFrame implements UIInfo {
 		CardLayout c = (CardLayout)(cards.getLayout());
 		c.show(cards, name);
 	}
+	
+	public void showLoginPanel() {
+		CardLayout c = (CardLayout)(cards.getLayout());
+		c.show(cards, LOGINPANEL);
+	}
 }
