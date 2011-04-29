@@ -1,13 +1,28 @@
 package com.googlecode.chocula.core;
 
+/**
+ * IncomeStatement class
+ * 
+ * @author Ye Zhefan
+ * 
+ */
 public class IncomeStatement implements Record {
 	private String month;
 	private int patientNumber;
 	private double expenditure;
 	private double aggregateIncome;
 
+	/**
+	 * contructor
+	 * 
+	 * @param month
+	 * @param patientNumber
+	 * @param expenditure
+	 * @param aggreagateincome
+	 * @param netIncome
+	 */
 	public IncomeStatement(String month, int patientNumber, double expenditure,
-			double aggreagateincome, double netIncome) {
+			double aggreagateincome) {
 		this.patientNumber = patientNumber;
 		this.month = month;
 		this.expenditure = expenditure;
