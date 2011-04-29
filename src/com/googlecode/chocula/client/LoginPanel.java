@@ -6,6 +6,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -17,7 +18,7 @@ import javax.swing.SwingConstants;
 public class LoginPanel extends JPanel implements UIInfo {
 	private static final long serialVersionUID = -8769915385635939550L;
 	private JTextField textFieldUsername;
-	private JTextField textFieldPassword;
+	private JPasswordField textFieldPassword;
 	private JButton btnLogin;
 	private JLabel lblChocula;
 	private JLabel lblWelcomeTo;
@@ -130,9 +131,10 @@ public class LoginPanel extends JPanel implements UIInfo {
 		JLabel lblPassword = new JLabel("Password:");
 		add(lblPassword, "26, 30, right, default");
 		
-		textFieldPassword = new JTextField();
+		textFieldPassword = new JPasswordField();
 		add(textFieldPassword, "28, 30, fill, default");
 		textFieldPassword.setColumns(10);
+		textFieldPassword.setEchoChar('¥');
 		
 		btnLogin = new JButton("Login");
 		add(btnLogin, "28, 38");
