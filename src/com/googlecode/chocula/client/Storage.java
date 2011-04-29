@@ -107,13 +107,29 @@ public class Storage implements ServerInfo {
 	 *            The username of the doctor
 	 * @param password
 	 *            The password of the doctor
-	 * @return The new nurse
+	 * @return The new doctor
 	 */
 	public Doctor createDoctor(String username, String password) {
 		Doctor doctor = new Doctor(username, password);
 		db.store(doctor);
 		db.commit();
 		return doctor;
+	}
+	
+	/**
+	 * Creates and stores a sysadmin in the database
+	 * 
+	 * @param username
+	 *            The username of the sysadmin
+	 * @param password
+	 *            The password of the sysadmin
+	 * @return The new sysadmin
+	 */
+	public SystemAdmin createSystemAdmin(String username, String password) {
+		SystemAdmin sa = new SystemAdmin(username, password);
+		db.store(sa);
+		db.commit();
+		return sa;
 	}
 
 	/**
@@ -180,6 +196,19 @@ public class Storage implements ServerInfo {
 	 */
 	public ObjectSet<Doctor> readDoctor(String username, String password) {
 		return db.queryByExample(new Doctor(username, password));
+	}
+	
+	/**
+	 * Finds any sysadmins in the database matching the parameter(s)
+	 * 
+	 * @param username
+	 *            The username of the sysadminn
+	 * @param password
+	 *            The password of the sysadmin
+	 * @return Any matching sysadmins
+	 */
+	public ObjectSet<SystemAdmin> readSystemAdmin(String username, String password) {
+		return db.queryByExample(new SystemAdmin(username, password));
 	}
 
 	/**
@@ -272,6 +301,25 @@ public class Storage implements ServerInfo {
 		db.store(found);
 		db.commit();
 	}
+	
+	/**
+	 * Updates a sysadmin in the database
+	 * 
+	 * @param old
+	 *            The old sysadmin to update
+	 * @param username
+	 *            The username of the sysadmin
+	 * @param password
+	 *            The password of the sysadmin
+	 */
+	public void updateSystemAdmin(SystemAdmin old, String username, String password) {
+		ObjectSet<SystemAdmin> result = db.queryByExample(old);
+		SystemAdmin found = result.next();
+		found.setUsername(username);
+		found.setPassword(password);
+		db.store(found);
+		db.commit();
+	}
 
 	/**
 	 * Deletes a patient from the database
@@ -305,6 +353,18 @@ public class Storage implements ServerInfo {
 	 */
 	public void deleteDoctor(Doctor doctor) {
 		ObjectSet<Doctor> result = db.queryByExample(doctor);
+		db.delete(result.next());
+		db.commit();
+	}
+	
+	/**
+	 * Deletes a sysadmin from the database
+	 * 
+	 * @param doctor
+	 *            The sysadmin to delete
+	 */
+	public void deleteSystemAdmin(SystemAdmin sa) {
+		ObjectSet<SystemAdmin> result = db.queryByExample(sa);
 		db.delete(result.next());
 		db.commit();
 	}

@@ -145,6 +145,8 @@ public class UserPanel extends JPanel implements UIInfo {
 				Storage.getInstance().createNurse(username, password);
 			else if (value.equals("Doctor"))
 				Storage.getInstance().createDoctor(username, password);
+			else if (value.equals("SysAdmin"))
+				Storage.getInstance().createSystemAdmin(username, password);
 		}
 	}
 	
@@ -157,7 +159,9 @@ public class UserPanel extends JPanel implements UIInfo {
 				String password = textFieldPassword.getText();
 				User user = Storage.getInstance().readUser(username, password);
 				
-				if (user instanceof Doctor)
+				if (user instanceof SystemAdmin)
+					Storage.getInstance().deleteSystemAdmin((SystemAdmin)user);
+				else if (user instanceof Doctor)
 					Storage.getInstance().deleteDoctor((Doctor) user);
 				else if (user instanceof Nurse)
 					Storage.getInstance().deleteNurse((Nurse) user);
