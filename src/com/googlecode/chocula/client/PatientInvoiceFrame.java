@@ -1,12 +1,9 @@
 package com.googlecode.chocula.client;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
@@ -15,9 +12,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 
+import com.googlecode.chocula.core.Invoice;
 import com.googlecode.chocula.core.Patient;
-import com.googlecode.chocula.core.TreatmentRecord;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -28,9 +24,11 @@ import java.awt.event.KeyEvent;
  */
 public class PatientInvoiceFrame extends JFrame implements UIInfo {
 
-	private JPanel contentPane;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8829032624518808779L;
 	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_3;
 	private JTable table;
 	private boolean changed = false;
@@ -40,8 +38,10 @@ public class PatientInvoiceFrame extends JFrame implements UIInfo {
 			public void run() {
 				try {
 					String date = "04/05/2011";
-					Patient patient = new Patient("Chris", "Long", date);
-					PatientInvoiceFrame frame = new PatientInvoiceFrame(patient);
+					Patient patient = new Patient("Chris", "Long");
+					Invoice invoice = new Invoice(patient, date, null, null,
+							null);
+					PatientInvoiceFrame frame = new PatientInvoiceFrame(invoice);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class PatientInvoiceFrame extends JFrame implements UIInfo {
 	/**
 	 * Create the frame.
 	 */
-	public PatientInvoiceFrame(Patient patient) {
+	public PatientInvoiceFrame(Invoice invoice) {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -74,18 +74,13 @@ public class PatientInvoiceFrame extends JFrame implements UIInfo {
 		setTitle("Patient Invoice");
 		getContentPane().setLayout(null);
 
-		JLabel lblLastName = new JLabel("Last Name: ");
+		JLabel lblLastName = new JLabel("Patient Name: ");
 		lblLastName.setFont(new Font("ËÎÌו", Font.PLAIN, 14));
 		lblLastName.setBounds(10, 47, 103, 15);
 		getContentPane().add(lblLastName);
 
-		JLabel lblFirstName = new JLabel("First Name: ");
-		lblFirstName.setFont(new Font("ËÎÌו", Font.PLAIN, 14));
-		lblFirstName.setBounds(337, 44, 103, 15);
-		getContentPane().add(lblFirstName);
-
 		textField = new JTextField();
-		textField.setText(patient.getLastname());
+		textField.setText(invoice.getPatientName());
 		textField.setEditable(false);
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -93,16 +88,9 @@ public class PatientInvoiceFrame extends JFrame implements UIInfo {
 				changed = true;
 			}
 		});
-		textField.setBounds(90, 45, 120, 21);
+		textField.setBounds(123, 44, 285, 21);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setText(patient.getFirstname());
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(420, 41, 120, 21);
-		getContentPane().add(textField_1);
 
 		JLabel lblDateOfVisit = new JLabel("Date of Visit: ");
 		lblDateOfVisit.setFont(new Font("ËÎÌו", Font.PLAIN, 14));
@@ -110,7 +98,7 @@ public class PatientInvoiceFrame extends JFrame implements UIInfo {
 		getContentPane().add(lblDateOfVisit);
 
 		textField_3 = new JTextField();
-		textField_3.setText(patient.getDate());
+		textField_3.setText(invoice.getDate());
 		textField_3.setEditable(false);
 		textField_3.setBounds(121, 89, 287, 21);
 		getContentPane().add(textField_3);
