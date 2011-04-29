@@ -1,4 +1,5 @@
 package com.googlecode.chocula.core;
+
 import java.util.Date;
 
 /**
@@ -12,31 +13,39 @@ public class TreatmentRecord implements Record {
 	private Patient patient;
 	private Doctor treatingDoctor;
 
-	private Date dateAndTime;
+	private String dateAndTime;
 
 	private Nurse attendingNurse;
 
 	private DoctorsOrders doctorsOrders;
-	
+
 	private String chiefComplaint;
-	
+
 	private String vitalSigns;
-	
+
 	private String diagnosis;
-	
+
 	/**
 	 * This constructor creates a new treatment record with required fields
 	 * 
-	 * @param treatingDoctor The doctor in charge of the visit
-	 * @param dateAndTime The date the record was created
-	 * @param attendingNurse The nurse who aided the doctor
-	 * @param doctorsOrders The plan created by the doctor
-	 * @param chiefComplaint The patient's main complaint
-	 * @param vitalSigns The vital signs of the patient
-	 * @param diagnosis The final diagnosis
-	 * @param patient The patient
+	 * @param treatingDoctor
+	 *            The doctor in charge of the visit
+	 * @param dateAndTime
+	 *            The date the record was created
+	 * @param attendingNurse
+	 *            The nurse who aided the doctor
+	 * @param doctorsOrders
+	 *            The plan created by the doctor
+	 * @param chiefComplaint
+	 *            The patient's main complaint
+	 * @param vitalSigns
+	 *            The vital signs of the patient
+	 * @param diagnosis
+	 *            The final diagnosis
+	 * @param patient
+	 *            The patient
 	 */
-	public TreatmentRecord(Doctor treatingDoctor, Date dateAndTime,
+	public TreatmentRecord(Doctor treatingDoctor, String dateAndTime,
 			Nurse attendingNurse, DoctorsOrders doctorsOrders,
 			String chiefComplaint, String vitalSigns, String diagnosis,
 			Patient patient) {
@@ -49,7 +58,7 @@ public class TreatmentRecord implements Record {
 		this.diagnosis = diagnosis;
 		this.patient = patient;
 	}
-	
+
 	/**
 	 * Getter for the treating doctor
 	 * 
@@ -58,34 +67,36 @@ public class TreatmentRecord implements Record {
 	public Doctor getTreatingDoctor() {
 		return treatingDoctor;
 	}
-	
+
 	/**
 	 * Setter for the treating doctor
 	 * 
-	 * @param treatingDoctor The new treating doctor
+	 * @param treatingDoctor
+	 *            The new treating doctor
 	 */
 	public void setTreatingDoctor(Doctor treatingDoctor) {
 		this.treatingDoctor = treatingDoctor;
 	}
-	
+
 	/**
 	 * Getter for the date
 	 * 
 	 * @return The date of the record
 	 */
-	public Date getDateAndTime() {
+	public String getDateAndTime() {
 		return dateAndTime;
 	}
-	
+
 	/**
 	 * Setter for the date
 	 * 
-	 * @param dateAndTime The new date
+	 * @param dateAndTime
+	 *            The new date
 	 */
-	public void setDateAndTime(Date dateAndTime) {
+	public void setDateAndTime(String dateAndTime) {
 		this.dateAndTime = dateAndTime;
 	}
-	
+
 	/**
 	 * Getter for the nurse
 	 * 
@@ -94,16 +105,17 @@ public class TreatmentRecord implements Record {
 	public Nurse getAttendingNurse() {
 		return attendingNurse;
 	}
-	
+
 	/**
 	 * Setter for the attending nurse
 	 * 
-	 * @param attending Nurse The new attending nurse
+	 * @param attending
+	 *            Nurse The new attending nurse
 	 */
 	public void setAttendingNurse(Nurse attendingNurse) {
 		this.attendingNurse = attendingNurse;
 	}
-	
+
 	/**
 	 * Getter for the doctor's order
 	 * 
@@ -112,16 +124,17 @@ public class TreatmentRecord implements Record {
 	public DoctorsOrders getDoctorsOrders() {
 		return doctorsOrders;
 	}
-	
+
 	/**
 	 * Setter for the doctor's order
 	 * 
-	 * @param doctorsOrders The new doctor's order
+	 * @param doctorsOrders
+	 *            The new doctor's order
 	 */
 	public void setDoctorsOrders(DoctorsOrders doctorsOrders) {
 		this.doctorsOrders = doctorsOrders;
 	}
-	
+
 	/**
 	 * Getter for the chief complaint
 	 * 
@@ -130,16 +143,17 @@ public class TreatmentRecord implements Record {
 	public String getChiefComplaint() {
 		return chiefComplaint;
 	}
-	
+
 	/**
 	 * Setter for the chief complaint
 	 * 
-	 * @param chiefComplaint The new chief complaint
+	 * @param chiefComplaint
+	 *            The new chief complaint
 	 */
 	public void setChiefComplaint(String chiefComplaint) {
 		this.chiefComplaint = chiefComplaint;
 	}
-	
+
 	/**
 	 * Getter for the vital signs
 	 * 
@@ -148,16 +162,17 @@ public class TreatmentRecord implements Record {
 	public String getVitalSigns() {
 		return vitalSigns;
 	}
-	
+
 	/**
 	 * Setter for the vital signs
 	 * 
-	 * @param vitalSigns The new vital signs
+	 * @param vitalSigns
+	 *            The new vital signs
 	 */
 	public void setVitalSigns(String vitalSigns) {
 		this.vitalSigns = vitalSigns;
 	}
-	
+
 	/**
 	 * Getter for the diagnosis
 	 * 
@@ -166,25 +181,27 @@ public class TreatmentRecord implements Record {
 	public String getDiagnosis() {
 		return diagnosis;
 	}
-	
+
 	/**
 	 * Setter for the diagnosis
 	 * 
-	 * @param diagnosis The new diagnosis
+	 * @param diagnosis
+	 *            The new diagnosis
 	 */
 	public void setDiagnosis(String diagnosis) {
 		this.diagnosis = diagnosis;
 	}
-	
+
 	/**
 	 * Setter for the patient
 	 * 
-	 * @param patient The new patient
+	 * @param patient
+	 *            The new patient
 	 */
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-	
+
 	/**
 	 * Getter for the patient
 	 * 
@@ -197,7 +214,8 @@ public class TreatmentRecord implements Record {
 	/**
 	 * Override equals method
 	 * 
-	 * @param o The treatment record to compare to
+	 * @param o
+	 *            The treatment record to compare to
 	 * @return true if the two are equal; false otherwise
 	 */
 	public boolean equals(Object o) {
