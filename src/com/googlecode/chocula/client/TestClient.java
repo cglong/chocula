@@ -9,8 +9,9 @@ import com.googlecode.chocula.core.*;
 
 public class TestClient extends TestCase {
 	/**
-	 * Tests the login system. Creates a nurse, then attempts login. Following a successful login,
-	 * logs out. Then makes three false attempts to achieve lockout.
+	 * Tests the login system. Creates a nurse, then attempts login. Following a
+	 * successful login, logs out. Then makes three false attempts to achieve
+	 * lockout.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -39,8 +40,9 @@ public class TestClient extends TestCase {
 	}
 
 	/**
-	 * Tests the creation, reading, updating and deletion of a patient within the database.
-	 * Checks that a new patient can be created, then found, then changed, then deleted.
+	 * Tests the creation, reading, updating and deletion of a patient within
+	 * the database. Checks that a new patient can be created, then found, then
+	 * changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -85,10 +87,11 @@ public class TestClient extends TestCase {
 				insuranceCarrier, age, allergies, medicalHistory);
 		assertFalse(result.hasNext());
 	}
-	
+
 	/**
-	 * Tests the creation, reading, updating and deletion of a nurse within the database.
-	 * Checks that a new nurse can be created, then found, then changed, then deleted.
+	 * Tests the creation, reading, updating and deletion of a nurse within the
+	 * database. Checks that a new nurse can be created, then found, then
+	 * changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -113,10 +116,11 @@ public class TestClient extends TestCase {
 		result = Storage.getInstance().readNurse(username, password);
 		assertFalse(result.hasNext());
 	}
-	
+
 	/**
-	 * Tests the creation, reading, updating and deletion of a doctor within the database.
-	 * Checks that a new doctor can be created, then found, then changed, then deleted.
+	 * Tests the creation, reading, updating and deletion of a doctor within the
+	 * database. Checks that a new doctor can be created, then found, then
+	 * changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -143,8 +147,8 @@ public class TestClient extends TestCase {
 	}
 
 	/**
-	 * Tests the lookup of a patient by name only. Creates and stores the patient in the database,
-	 * then attempts to find it using its name.
+	 * Tests the lookup of a patient by name only. Creates and stores the
+	 * patient in the database, then attempts to find it using its name.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -157,10 +161,11 @@ public class TestClient extends TestCase {
 		assertEquals(firstname, bobSaget.getFirstname());
 		assertEquals(lastname, bobSaget.getLastname());
 	}
-	
+
 	/**
-	 * Tests the creation, reading, updating and deletion of an appointment within the database.
-	 * Checks that a new appointment can be created, then found, then changed, then deleted.
+	 * Tests the creation, reading, updating and deletion of an appointment
+	 * within the database. Checks that a new appointment can be created, then
+	 * found, then changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -192,16 +197,17 @@ public class TestClient extends TestCase {
 				patient);
 		assertFalse(result.hasNext());
 	}
-	
+
 	/**
-	 * Tests the creation, reading, updating and deletion of a treatment record within the database.
-	 * Checks that a new treatment record can be created, then found, then changed, then deleted.
+	 * Tests the creation, reading, updating and deletion of a treatment record
+	 * within the database. Checks that a new treatment record can be created,
+	 * then found, then changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
 	public void testCRUDTreatmentRecord() {
 		Doctor doctor = new Doctor(null, null);
-		Date date = new Date();
+		String date = "";
 		Nurse nurse = new Nurse(null, null);
 		DoctorsOrders doctorsOrders = null;
 		String chiefComplaint = "cough";
@@ -232,10 +238,11 @@ public class TestClient extends TestCase {
 				doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient);
 		assertFalse(result.hasNext());
 	}
-	
+
 	/**
-	 * Tests the creation, reading, updating and deletion of a doctor's order within the database.
-	 * Checks that a new doctor's order can be created, then found, then changed, then deleted.
+	 * Tests the creation, reading, updating and deletion of a doctor's order
+	 * within the database. Checks that a new doctor's order can be created,
+	 * then found, then changed, then deleted.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -270,8 +277,8 @@ public class TestClient extends TestCase {
 	}
 
 	/**
-	 * Creates a new invoice based on provided data and verifies the Invoice properly represents
-	 * the information.
+	 * Creates a new invoice based on provided data and verifies the Invoice
+	 * properly represents the information.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -298,8 +305,7 @@ public class TestClient extends TestCase {
 		assertEquals(itemizedName, invoice.getItemizedName().getItem(0));
 		assertEquals(itemizedCost, invoice.getItemizedCost().get(0));
 	}
-	
-	
+
 	/**
 	 * @author Elise Prado
 	 */
@@ -329,8 +335,9 @@ public class TestClient extends TestCase {
 	}
 
 	/**
-	 * Tests the error logging system. Creates a new Exception, then stores in the database.
-	 * Then reads the database for any exceptions and verifies the Exception was added.
+	 * Tests the error logging system. Creates a new Exception, then stores in
+	 * the database. Then reads the database for any exceptions and verifies the
+	 * Exception was added.
 	 * 
 	 * @author Christopher Long
 	 */
@@ -350,11 +357,13 @@ public class TestClient extends TestCase {
 	}
 
 	/**
-	 * JUnit test to create, read, update, and delete a doctor's order
-	 * For create, certain parameters will be added to DoctorsOrders, then add it to database, result will check if it is there
-	 * For read, the created DoctorsOrders will be retrieved from database, and result will check
-	 * For update, prescription will be changed, result will check if the prescription is the latest one
-	 * For delete, the created DoctorsOrders will be removed from database, result will check if it is removed
+	 * JUnit test to create, read, update, and delete a doctor's order For
+	 * create, certain parameters will be added to DoctorsOrders, then add it to
+	 * database, result will check if it is there For read, the created
+	 * DoctorsOrders will be retrieved from database, and result will check For
+	 * update, prescription will be changed, result will check if the
+	 * prescription is the latest one For delete, the created DoctorsOrders will
+	 * be removed from database, result will check if it is removed
 	 * 
 	 * @author Ye Zhefan
 	 */
