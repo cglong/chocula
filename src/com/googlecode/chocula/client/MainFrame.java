@@ -48,7 +48,7 @@ public class MainFrame extends JFrame implements UIInfo {
 		
 		cards = new JPanel(new CardLayout(0, 0));
 		
-		loginPanel = new LoginPanel();
+		loginPanel = new LoginPanel(sidebarPanel);
 		cards.add(loginPanel, LOGINPANEL);
 		contentPane.add(cards, BorderLayout.CENTER);
 	}

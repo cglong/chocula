@@ -21,11 +21,12 @@ public class LoginPanel extends JPanel implements UIInfo {
 	private JButton btnLogin;
 	private JLabel lblChocula;
 	private JLabel lblWelcomeTo;
+	private MainSidebarPanel sidebar;
 
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel() {
+	private LoginPanel() {
 		setBounds(0, 0, WINDOWWIDTH, WINDOWHEIGHT);
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -138,11 +139,18 @@ public class LoginPanel extends JPanel implements UIInfo {
 		btnLogin.addActionListener(new LoginButtonListener());
 	}
 	
+	public LoginPanel(MainSidebarPanel sidebar) {
+		this();
+		this.sidebar = sidebar;
+	}
+	
 	private class LoginButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			String username = textFieldUsername.getText();
 			String password = textFieldPassword.getText();
 			Login.getInstance().login(username, password);
+			if (Login.getInstance().isLoggedIn())
+				sidebar.updateButtons();
 		}
 	}
 }

@@ -72,4 +72,8 @@ public class Login {
 		user = null;
 		lockout = 0;
 	}
+	
+	public User getUser() {
+		return user;
+	}
 }
