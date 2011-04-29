@@ -1,10 +1,13 @@
 package com.googlecode.chocula.client;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import com.db4o.ObjectSet;
 import com.googlecode.chocula.core.*;
 
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -95,7 +98,15 @@ public class MainSidebarPanel extends JPanel implements UIInfo {
 	
 	private class ReportsListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			parent.showNewPanel(new IncomeStatementPanel(null), "Income Statement");
+			String month = (String) JOptionPane.showInputDialog(
+					(Component) e.getSource(), "Enter a month:",
+					"View Income Statement", JOptionPane.PLAIN_MESSAGE, null,
+					null, null);
+			ObjectSet<IncomeStatement> result = Storage.getInstance().readIncomeStatement(month, 0, 0, 0);
+			IncomeStatement statement = null;
+			if (result.hasNext())
+				statement = result.next();
+			parent.showNewPanel(new IncomeStatementPanel(statement), "Income Statement");
 		}
 	}
 	
