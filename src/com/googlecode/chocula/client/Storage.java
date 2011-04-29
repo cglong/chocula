@@ -618,7 +618,72 @@ public class Storage implements ServerInfo {
 	 *            The doctor's order to delete
 	 */
 	public void deleteDoctorsOrders(DoctorsOrders doctorsOrders) {
-		ObjectSet<Appointment> result = db.queryByExample(doctorsOrders);
+		ObjectSet<DoctorsOrders> result = db.queryByExample(doctorsOrders);
+		db.delete(result.next());
+		db.commit();
+	}
+
+	/**
+	 * Create an Incomestatement
+	 * 
+	 * @param month
+	 * @param patientNumber
+	 * @param expenditure
+	 * @param aggregateIncome
+	 * @return
+	 */
+	public IncomeStatement createIncomeStatement(String month,
+			int patientNumber, double expenditure, double aggregateIncome) {
+		IncomeStatement incomestatement = new IncomeStatement(month,
+				patientNumber, expenditure, aggregateIncome);
+		db.store(incomestatement);
+		db.commit();
+		return incomestatement;
+	}
+
+	/**
+	 * Read an incomestatement
+	 * 
+	 * @param month
+	 * @param patientNumber
+	 * @param expenditure
+	 * @param aggregateIncome
+	 * @return
+	 */
+	public ObjectSet<IncomeStatement> readIncomeStatement(String month,
+			int patientNumber, double expenditure, double aggregateIncome) {
+		return db.queryByExample(new IncomeStatement(month, patientNumber,
+				expenditure, aggregateIncome));
+	}
+
+	/**
+	 * Update Incomestatement
+	 * 
+	 * @param old
+	 * @param month
+	 * @param patientNumber
+	 * @param expenditure
+	 * @param aggregateIncome
+	 */
+	public void updateIncomeStatement(IncomeStatement old, String month,
+			int patientNumber, double expenditure, double aggregateIncome) {
+		ObjectSet<IncomeStatement> result = db.queryByExample(old);
+		IncomeStatement found = result.next();
+		found.setMonth(month);
+		found.setPatientNumber(patientNumber);
+		found.setExpenditure(expenditure);
+		found.setAggregateincome(aggregateIncome);
+		db.store(found);
+		db.commit();
+	}
+
+	/**
+	 * Delete an incomestatement
+	 * 
+	 * @param incomestatement
+	 */
+	public void deleteIncomeStatement(IncomeStatement incomestatement) {
+		ObjectSet<IncomeStatement> result = db.queryByExample(incomestatement);
 		db.delete(result.next());
 		db.commit();
 	}
