@@ -233,4 +233,8 @@ public class TreatmentRecord implements Record {
 			return false;
 		}
 	}
+
+	public String toString() {
+		return date;
+	}
 }
