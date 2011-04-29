@@ -1,6 +1,8 @@
 package com.googlecode.chocula.client;
 
 import javax.swing.JPanel;
+
+import com.googlecode.chocula.core.User;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
@@ -155,8 +157,12 @@ public class LoginPanel extends JPanel implements UIInfo {
 				sidebar.updateButtons();
 				textFieldUsername.setText("");
 				textFieldPassword.setText("");
-			} else if (!Login.getInstance().canTry())
+			} else if (!Login.getInstance().canTry()) {
 				btnLogin.setEnabled(false);
+				User user = Storage.getInstance().readUser(username, null);
+				if (user != null)
+					user.setSuspended(true);
+			}
 		}
 	}
 }

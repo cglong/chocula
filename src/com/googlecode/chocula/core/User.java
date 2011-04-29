@@ -8,10 +8,12 @@ package com.googlecode.chocula.core;
  */
 public abstract class User {
 	private String username, password;
+	private boolean suspended;
 
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
+		suspended = false;
 	}
 	
 	/**
@@ -55,5 +57,23 @@ public abstract class User {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	/**
+	 * This setter returns the user's suspended status.
+	 * 
+	 * @return The suspended status of the user.
+	 */
+	public boolean getSuspended() {
+		return suspended;
+	}
+	
+	/**
+	 * This setter sets the suspended status of the user
+	 * 
+	 * @param suspended The new suspended status
+	 */
+	public void setSuspended(boolean suspended) {
+		this.suspended = suspended;
 	}
 }
