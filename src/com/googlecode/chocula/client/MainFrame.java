@@ -43,14 +43,19 @@ public class MainFrame extends JFrame implements UIInfo {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		MainSidebarPanel sidebarPanel = new MainSidebarPanel();
+		MainSidebarPanel sidebarPanel = new MainSidebarPanel(this);
 		contentPane.add(sidebarPanel, BorderLayout.WEST);
 		
-		cards = new JPanel();
-		cards.setLayout(new CardLayout(0, 0));
+		cards = new JPanel(new CardLayout(0, 0));
 		
 		loginPanel = new LoginPanel();
 		cards.add(loginPanel, LOGINPANEL);
-		contentPane.add(loginPanel, BorderLayout.CENTER);
+		contentPane.add(cards, BorderLayout.CENTER);
+	}
+	
+	public void showNewPanel(JPanel panel, String name) {
+		cards.add(panel, name);
+		CardLayout c = (CardLayout)(cards.getLayout());
+		c.show(cards, name);
 	}
 }
