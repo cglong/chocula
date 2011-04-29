@@ -28,24 +28,21 @@ public class MainSidebarPanel extends JPanel implements UIInfo {
 		
 		btnViewPatients = new JButton("View Patients");
 		btnViewPatients.addActionListener(new PatientListener());
-		btnViewPatients.setVisible(false);
 		add(btnViewPatients);
 		
 		btnViewAppointments = new JButton("View Appointments");
-		btnViewAppointments.setVisible(false);
 		add(btnViewAppointments);
 		
 		btnViewReports = new JButton("View Reports");
-		btnViewReports.setVisible(false);
 		add(btnViewReports);
 		
 		btnViewUsers = new JButton("View Users");
-		btnViewUsers.setVisible(false);
 		add(btnViewUsers);
 		
 		btnLogout = new JButton("Logout");
-		btnLogout.setVisible(false);
 		add(btnLogout);
+		
+		updateButtons();
 	}
 	
 	public MainSidebarPanel(MainFrame parent) {
@@ -55,16 +52,29 @@ public class MainSidebarPanel extends JPanel implements UIInfo {
 	
 	public void updateButtons() {
 		User user = Login.getInstance().getUser();
+		
 		if (user instanceof Nurse) {
 			btnViewPatients.setVisible(true);
 			btnViewAppointments.setVisible(true);
+		} else {
+			btnViewPatients.setVisible(false);
+			btnViewAppointments.setVisible(false);
 		}
+		
 		if (user instanceof IDoctor)
 			btnViewReports.setVisible(true);
+		else
+			btnViewReports.setVisible(false);
+		
 		if (user instanceof SystemAdmin)
 			btnViewUsers.setVisible(true);
+		else
+			btnViewUsers.setVisible(false);
+		
 		if (user != null)
 			btnLogout.setVisible(true);
+		else
+			btnLogout.setVisible(false);
 	}
 	
 	private class PatientListener implements ActionListener {
