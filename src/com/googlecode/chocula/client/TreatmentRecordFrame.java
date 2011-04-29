@@ -56,34 +56,6 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 	private String vitalsigns = null;
 	private String diag = null;
 
-	/**
-	 * Test the frame.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Doctor doctor = new Doctor("Ye", null);
-					String date = "04/29/2011";
-					Nurse nurse = new Nurse("Priya", null);
-					DoctorsOrders doctorsOrders = new DoctorsOrders("1", "2",
-							"3", "4");
-					String chiefComplaint = "cough";
-					String vitalSigns = "120/80";
-					String diagnosis = "hypochondria";
-					Patient patient = new Patient("Chris", "Long");
-					TreatmentRecord tr = new TreatmentRecord(doctor, date,
-							nurse, doctorsOrders, chiefComplaint, vitalSigns,
-							diagnosis, patient);
-					TreatmentRecordFrame frame = new TreatmentRecordFrame(tr);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public TreatmentRecordFrame(final TreatmentRecord treatmentRecord) {
 		if (treatmentRecord == null) {
 			addWindowListener(new WindowAdapter() {
@@ -95,7 +67,7 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 						if (n == JOptionPane.CANCEL_OPTION) {
 							setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 						} else if (n == JOptionPane.NO_OPTION) {
-							setDefaultCloseOperation(EXIT_ON_CLOSE);
+							setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 						} else if (n == JOptionPane.YES_OPTION) {
 							DoctorsOrders docorder = new DoctorsOrders(
 									prescription, labwork, followup, other);
@@ -109,7 +81,7 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 									diag,
 									new Patient(textField_10.getText(),
 											textField_11.getText()));
-							setDefaultCloseOperation(EXIT_ON_CLOSE);
+							setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 						}
 					}
 				}
