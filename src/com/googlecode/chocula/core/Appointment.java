@@ -1,5 +1,4 @@
 package com.googlecode.chocula.core;
-import java.util.Date;
 
 /**
  * This class represents an appointment
@@ -9,48 +8,53 @@ import java.util.Date;
  */
 public class Appointment implements Record {
 
-	private Date desiredDateAndTime;
+	private String desiredDateAndTime;
 
 	private String reason;
 
 	private Doctor doctor;
 
 	private Patient patient;
-	
+
 	/**
 	 * This constructor creates a new appointment with required fields
 	 * 
-	 * @param desiredDateAndTime The date of the new appointment
-	 * @param doctor The doctor the patient will see
-	 * @param reason The main reason for the appointment
-	 * @param patient The patient
+	 * @param desiredDateAndTime
+	 *            The date of the new appointment
+	 * @param doctor
+	 *            The doctor the patient will see
+	 * @param reason
+	 *            The main reason for the appointment
+	 * @param patient
+	 *            The patient
 	 */
-	public Appointment(Date desiredDateAndTime, Doctor doctor,
-			String reason, Patient patient) {
+	public Appointment(String desiredDateAndTime, Doctor doctor, String reason,
+			Patient patient) {
 		this.desiredDateAndTime = desiredDateAndTime;
 		this.reason = reason;
 		this.doctor = doctor;
 		this.patient = patient;
 	}
-	
+
 	/**
 	 * Getter for the date of the appointment
 	 * 
 	 * @return The date of the appointment
 	 */
-	public Date getDesiredDateAndTime() {
+	public String getDesiredDateAndTime() {
 		return desiredDateAndTime;
 	}
-	
+
 	/**
 	 * Setter for the date of the appointment
 	 * 
-	 * @param desiredDateAndTime The new date
+	 * @param desiredDateAndTime
+	 *            The new date
 	 */
-	public void setDesiredDateAndTime(Date desiredDateAndTime) {
+	public void setDesiredDateAndTime(String desiredDateAndTime) {
 		this.desiredDateAndTime = desiredDateAndTime;
 	}
-	
+
 	/**
 	 * Getter for the reason for the appointment
 	 * 
@@ -59,16 +63,17 @@ public class Appointment implements Record {
 	public String getReason() {
 		return reason;
 	}
-	
+
 	/**
 	 * Setter for the reason for the appointment
 	 * 
-	 * @param reason The new reason
+	 * @param reason
+	 *            The new reason
 	 */
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	
+
 	/**
 	 * Getter for the doctor for the appointment
 	 * 
@@ -77,25 +82,27 @@ public class Appointment implements Record {
 	public Doctor getDoctor() {
 		return doctor;
 	}
-	
+
 	/**
 	 * Setter for the doctor for the appointment
 	 * 
-	 * @param doctor The new doctor
+	 * @param doctor
+	 *            The new doctor
 	 */
 	public void setDesiredDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	
+
 	/**
 	 * Setter for the patient for the appointment
 	 * 
-	 * @param patient The new patient
+	 * @param patient
+	 *            The new patient
 	 */
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-	
+
 	/**
 	 * Getter for the patient for the appointment
 	 * 
@@ -108,7 +115,8 @@ public class Appointment implements Record {
 	/**
 	 * Determines if two appointments are equal
 	 * 
-	 * @param o The appointment to compare to
+	 * @param o
+	 *            The appointment to compare to
 	 * @boolean true if the two are equal; false otherwise
 	 */
 	public boolean equals(Object o) {
@@ -122,9 +130,10 @@ public class Appointment implements Record {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public String toString() {
-		return desiredDateAndTime.toString() + ": " + patient.getName() + " (" + reason + "): " + doctor.getUsername();
+		return desiredDateAndTime.toString() + ": " + patient.getName() + " ("
+				+ reason + "): " + doctor.getUsername();
 	}
 }

@@ -1,5 +1,7 @@
 package com.googlecode.chocula.core;
 
+import org.jfree.chart.JFreeChart;
+
 /**
  * This class represents a patient.
  * 
@@ -12,6 +14,7 @@ public class Patient extends User implements IPatient {
 	private int age;
 	private String[] allergies;
 	private TreatmentRecord[] medicalHistory;
+	private JFreeChart chart;
 
 	/**
 	 * This constructor creates a new patient with required patient information
@@ -44,7 +47,8 @@ public class Patient extends User implements IPatient {
 	public Patient(String username, String password, String firstname,
 			String lastname, String address, String phoneNumber, String gender,
 			String pharmacy, String insuranceCarrier, String date, int age,
-			String[] allergies, TreatmentRecord[] medicalHistory) {
+			String[] allergies, TreatmentRecord[] medicalHistory,
+			JFreeChart chart) {
 		super(username, password);
 		this.setLastname(lastname);
 		this.setFirstname(firstname);
@@ -57,6 +61,7 @@ public class Patient extends User implements IPatient {
 		this.allergies = allergies;
 		this.medicalHistory = medicalHistory;
 		this.date = date;
+		this.setChart(chart);
 	}
 
 	/**
@@ -70,7 +75,7 @@ public class Patient extends User implements IPatient {
 	 */
 	public Patient(String firstname, String lastname, String date) {
 		this(null, null, firstname, lastname, null, null, null, null, null,
-				date, 0, null, null);
+				date, 0, null, null, null);
 	}
 
 	/**
@@ -82,7 +87,12 @@ public class Patient extends User implements IPatient {
 	 */
 	public Patient(String firstname, String lastname) {
 		this(null, null, firstname, lastname, null, null, null, null, null,
-				null, 0, null, null);
+				null, 0, null, null, null);
+	}
+
+	public Patient(String firstname, String lastname, JFreeChart chart) {
+		this(null, null, firstname, lastname, null, null, null, null, null,
+				null, 0, null, null, chart);
 	}
 
 	/**
@@ -286,9 +296,17 @@ public class Patient extends User implements IPatient {
 	public String getName() {
 		return firstname + " " + lastname;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getName();
+	}
+
+	public void setChart(JFreeChart chart) {
+		this.chart = chart;
+	}
+
+	public JFreeChart getChart() {
+		return chart;
 	}
 }

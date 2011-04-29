@@ -1,6 +1,6 @@
 package com.googlecode.chocula.client;
 
-import java.util.Date;
+import org.jfree.chart.JFreeChart;
 
 import com.db4o.*;
 import com.db4o.cs.*;
@@ -75,10 +75,10 @@ public class Storage implements ServerInfo {
 			String firstname, String lastname, String address,
 			String phoneNumber, String gender, String pharmacy,
 			String insuranceCarrier, String date, int age, String[] allergies,
-			TreatmentRecord[] medicalHistory) {
+			TreatmentRecord[] medicalHistory, JFreeChart chart) {
 		Patient patient = new Patient(username, password, firstname, lastname,
 				address, phoneNumber, gender, pharmacy, insuranceCarrier, date,
-				age, allergies, medicalHistory);
+				age, allergies, medicalHistory, chart);
 		db.store(patient);
 		db.commit();
 		return patient;
@@ -149,10 +149,10 @@ public class Storage implements ServerInfo {
 			String firstname, String lastname, String address,
 			String phoneNumber, String gender, String pharmacy,
 			String insuranceCarrier, String date, int age, String[] allergies,
-			TreatmentRecord[] medicalHistory) {
+			TreatmentRecord[] medicalHistory, JFreeChart chart) {
 		Patient proto = new Patient(username, password, firstname, lastname,
 				address, phoneNumber, gender, pharmacy, insuranceCarrier, date,
-				age, allergies, medicalHistory);
+				age, allergies, medicalHistory, chart);
 		return db.queryByExample(proto);
 	}
 
@@ -364,7 +364,7 @@ public class Storage implements ServerInfo {
 	 *            The patient
 	 * @return created appointment
 	 */
-	public Appointment createAppointment(Date date, Doctor doctor,
+	public Appointment createAppointment(String date, Doctor doctor,
 			String reason, Patient patient) {
 		Appointment appointment = new Appointment(date, doctor, reason, patient);
 		db.store(appointment);
@@ -385,7 +385,7 @@ public class Storage implements ServerInfo {
 	 *            The patient
 	 * @return appointment
 	 */
-	public ObjectSet<Appointment> readAppointment(Date date, Doctor doctor,
+	public ObjectSet<Appointment> readAppointment(String date, Doctor doctor,
 			String reason, Patient patient) {
 		return db
 				.queryByExample(new Appointment(date, doctor, reason, patient));
@@ -405,7 +405,7 @@ public class Storage implements ServerInfo {
 	 * @param patient
 	 *            The patient
 	 */
-	public void updateAppointment(Appointment old, Date date, Doctor doctor,
+	public void updateAppointment(Appointment old, String date, Doctor doctor,
 			String reason, Patient patient) {
 		ObjectSet<Appointment> result = db.queryByExample(old);
 		Appointment found = result.next();
