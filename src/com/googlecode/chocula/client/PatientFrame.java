@@ -21,6 +21,7 @@ public class PatientFrame extends JFrame implements UIInfo {
 		setBounds(100, 100, WINDOWWIDTH, WINDOWHEIGHT);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
+		this.addWindowListener(new WindowCloseListener());
 		
 		JLabel label = new JLabel("");
 		label.setBounds(0, 0, SIDEBARWIDTH, WINDOWHEIGHT);
@@ -32,7 +33,7 @@ public class PatientFrame extends JFrame implements UIInfo {
 	
 	private class WindowCloseListener implements WindowListener {
 		public void windowClosing(WindowEvent we) {
-			
+			patientPanel.saveChanges();
 		}
 		
 		public void windowActivated(WindowEvent we) {}

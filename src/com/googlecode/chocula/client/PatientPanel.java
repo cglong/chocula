@@ -3,6 +3,8 @@ package com.googlecode.chocula.client;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
@@ -32,6 +34,7 @@ public class PatientPanel extends JPanel implements UIInfo {
 	private JButton btnSearch;
 	private Patient patient;
 	private JButton btnDelete;
+	private boolean changed = false;
 
 	/**
 	 * Create the panel.
@@ -156,6 +159,34 @@ public class PatientPanel extends JPanel implements UIInfo {
 		textFieldInsuranceCarrier.setText(patient.getInsuranceCarrier());
 		textFieldAge.setText(Integer.toString(patient.getAge()));
 		btnSearch.setText("View Records");
+		
+		EditTextListener listener = new EditTextListener();
+		textFieldFirstName.addKeyListener(listener);
+		textFieldLastName.addKeyListener(listener);
+		textFieldAddress.addKeyListener(listener);
+		textFieldPhoneNumber.addKeyListener(listener);
+		textFieldGender.addKeyListener(listener);
+		textFieldPharmacy.addKeyListener(listener);
+		textFieldInsuranceCarrier.addKeyListener(listener);
+		textFieldAge.addKeyListener(listener);
+	}
+	
+	public boolean saveChanges() {
+		if (changed) {
+			int n = JOptionPane.showConfirmDialog(this, "Would you like to save your changes?");
+			if (n == JOptionPane.CANCEL_OPTION)
+				return false;
+			else if (n == JOptionPane.NO_OPTION)
+				return true;
+			else if (n == JOptionPane.YES_OPTION) {
+				Storage.getInstance().updatePatient(patient, patient.getUsername(), patient.getPassword(), textFieldFirstName.getText(),
+						textFieldLastName.getText(), textFieldAddress.getText(), textFieldPhoneNumber.getText(),
+						textFieldGender.getText(), textFieldPharmacy.getText(), textFieldInsuranceCarrier.getText(),
+						Integer.parseInt(textFieldAge.getText()), patient.getAllergies(), patient.getMedicalHistory());
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private class ButtonListener implements ActionListener {
@@ -246,6 +277,13 @@ public class PatientPanel extends JPanel implements UIInfo {
 						insuranceCarrier, null, Integer.parseInt(age), null, medicalHistory, null);
 				JOptionPane.showMessageDialog((Component)e.getSource(), "Patient successfully created!");
 			}
+		}
+	}
+	
+	private class EditTextListener extends KeyAdapter {
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			changed = true;
 		}
 	}
 }
