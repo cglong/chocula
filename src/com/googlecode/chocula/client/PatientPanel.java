@@ -23,11 +23,12 @@ public class PatientPanel extends JPanel implements UIInfo {
 	private JTextField textFieldLastName;
 	private JTextField textFieldAddress;
 	private JTextField textFieldPhoneNumber;
-	private JComboBox comboBoxGender;
 	private JTextField textFieldPharmacy;
 	private JTextField textFieldInsuranceCarrier;
 	private JTextField textFieldAge;
 	private JTextField textFieldAllergies;
+	private JTextField textFieldGender;
+	private JButton btnSearch;
 
 	/**
 	 * Create the panel.
@@ -121,8 +122,10 @@ public class PatientPanel extends JPanel implements UIInfo {
 		
 		JLabel lblGender = new JLabel("Gender:");
 		add(lblGender, "2, 18, right, default");
-		comboBoxGender = new JComboBox(genderChoices);
-		add(comboBoxGender, "4, 18, fill, default");
+		
+		textFieldGender = new JTextField();
+		add(textFieldGender, "4, 18, fill, default");
+		textFieldGender.setColumns(10);
 		
 		JLabel lblPharmacy = new JLabel("Pharmacy:");
 		add(lblPharmacy, "2, 22, right, default");
@@ -152,9 +155,22 @@ public class PatientPanel extends JPanel implements UIInfo {
 		add(textFieldAllergies, "4, 34, fill, default");
 		textFieldAllergies.setColumns(10);
 		
-		JButton btnSearch = new JButton("Search");
+		btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new SearchButtonListener());
 		add(btnSearch, "4, 44, right, default");
+	}
+	
+	public PatientPanel(Patient patient) {
+		this();
+		textFieldFirstName.setText(patient.getFirstname());
+		textFieldLastName.setText(patient.getLastname());
+		textFieldAddress.setText(patient.getAddress());
+		textFieldPhoneNumber.setText(patient.getPhoneNumber());
+		textFieldGender.setText(patient.getGender());
+		textFieldPharmacy.setText(patient.getPharmacy());
+		textFieldInsuranceCarrier.setText(patient.getInsuranceCarrier());
+		textFieldAge.setText(Integer.toString(patient.getAge()));
+		btnSearch.setVisible(false);
 	}
 	
 	private class SearchButtonListener implements ActionListener {
@@ -163,7 +179,7 @@ public class PatientPanel extends JPanel implements UIInfo {
 			String lastname = textFieldLastName.getText();
 			String address = textFieldAddress.getText();
 			String phoneNumber = textFieldPhoneNumber.getText();
-			String gender = comboBoxGender.toString();
+			String gender = textFieldGender.getText();
 			String pharmacy = textFieldPharmacy.getText();
 			String insuranceCarrier = textFieldInsuranceCarrier.getText();
 			
