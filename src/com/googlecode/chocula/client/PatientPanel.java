@@ -31,6 +31,7 @@ public class PatientPanel extends JPanel implements UIInfo {
 	private JTextField textFieldGender;
 	private JButton btnSearch;
 	private Patient patient;
+	private JButton btnDelete;
 
 	/**
 	 * Create the panel.
@@ -131,14 +132,21 @@ public class PatientPanel extends JPanel implements UIInfo {
 
 		btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ButtonListener());
+		
+		btnDelete = new JButton("Delete");
+		add(btnDelete, "4, 42, right, default");
 		add(btnSearch, "4, 44, right, default");
 		
 		patient = null;
+		btnDelete.setVisible(false);
+		btnDelete.addActionListener(new DeleteButtonListener());
 	}
 
 	public PatientPanel(Patient patient) {
 		this();
 		this.patient = patient;
+		btnDelete.setVisible(true);
+		
 		textFieldFirstName.setText(patient.getFirstname());
 		textFieldLastName.setText(patient.getLastname());
 		textFieldAddress.setText(patient.getAddress());
@@ -184,7 +192,7 @@ public class PatientPanel extends JPanel implements UIInfo {
 
 			ObjectSet<Patient> result = Storage.getInstance().readPatient(null,
 					null, firstname, lastname, address, phoneNumber, gender,
-					pharmacy, insuranceCarrier, null, 0, null, null);
+					pharmacy, insuranceCarrier, null, 0, null, null, null);
 			Patient[] patients = new Patient[result.size()];
 			for (int i = 0; i < result.size(); i++)
 				patients[i] = result.next();
@@ -208,6 +216,15 @@ public class PatientPanel extends JPanel implements UIInfo {
 					(Component) e.getSource(), "Select a record to view:",
 					"Select Record", JOptionPane.PLAIN_MESSAGE, null,
 					choices, null);
+		}
+	}
+	
+	private class DeleteButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			int n = JOptionPane.showConfirmDialog((Component)e.getSource(), "Are you sure you want to delete this patient?",
+					"Delete?", JOptionPane.YES_NO_OPTION);
+			if (n == JOptionPane.YES_OPTION)
+				Storage.getInstance().deletePatient(patient);
 		}
 	}
 }
