@@ -289,7 +289,7 @@ public class TestClient extends TestCase {
 		patient.setFirstname("Bob");
 		patient.setLastname("Saget");
 
-		Date date = new Date();
+		String date = "";
 		Doctor doctor = new Doctor(null, null);
 		String itemizedName = "blood work";
 		Integer itemizedCost = 100;
@@ -316,7 +316,7 @@ public class TestClient extends TestCase {
 		patient.setFirstname("Squatty");
 		patient.setLastname("The Hobo");
 
-		Date date = new Date();
+		String date = "";
 		Doctor doctor = new Doctor(null, null);
 		// is there a limit to how long the string can be?
 		String itemizedName = "put in a machine and lots of tests were done and it turned out he had a medical condition so then the doctor did some more tests to hopefully figure out how to cure him but his condition is incurable so some treatments were presecribed insted.";
