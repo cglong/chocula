@@ -26,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 public class UserPanel extends JPanel implements UIInfo {
+	private static final long serialVersionUID = 6124770537570916432L;
 	private JTextField textFieldUsername;
 	private JTextField textFieldPassword;
 	private JComboBox comboBox;
