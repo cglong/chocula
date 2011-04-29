@@ -6,12 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import java.awt.CardLayout;
 
 public class MainFrame extends JFrame implements UIInfo {
-
+	private static final long serialVersionUID = -2615930573557561194L;
+	final static String LOGINPANEL = "Login";
+	
 	private JPanel contentPane;
+	private JPanel cards;
+	private LoginPanel loginPanel;
 
 	/**
 	 * Launch the application.
@@ -40,20 +43,14 @@ public class MainFrame extends JFrame implements UIInfo {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		updateLoggedInPanel();
-	}
-	
-	private void updateLoggedInPanel() {
-		if (Login.getInstance().isLoggedIn()) {
-			MainSidebarPanel sidebarPanel = new MainSidebarPanel();
-			contentPane.add(sidebarPanel, BorderLayout.WEST);
-			
-			JLabel welcomeLabel = new JLabel("Welcome to Chocula!");
-			welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			contentPane.add(welcomeLabel, BorderLayout.CENTER);
-		} else {
-			LoginPanel loginPanel = new LoginPanel();
-			contentPane.add(loginPanel, BorderLayout.CENTER);
-		}
+		MainSidebarPanel sidebarPanel = new MainSidebarPanel();
+		contentPane.add(sidebarPanel, BorderLayout.WEST);
+		
+		cards = new JPanel();
+		cards.setLayout(new CardLayout(0, 0));
+		
+		loginPanel = new LoginPanel();
+		cards.add(loginPanel, LOGINPANEL);
+		contentPane.add(loginPanel, BorderLayout.CENTER);
 	}
 }
