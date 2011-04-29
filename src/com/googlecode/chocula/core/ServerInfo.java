@@ -7,7 +7,7 @@ package com.googlecode.chocula.core;
  * @version 1.0
  */
 public interface ServerInfo {
-	public String HOST = "localhost";
+	public String HOST = "143.215.109.232";
 	public String FILE = "database.db4o";
 	public int PORT = 4488;
 	public String USER = "db4o";
