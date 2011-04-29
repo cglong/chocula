@@ -282,4 +282,8 @@ public class Patient extends User implements IPatient {
 	public String getDate() {
 		return date;
 	}
+
+	public String getName() {
+		return firstname + " " + lastname;
+	}
 }

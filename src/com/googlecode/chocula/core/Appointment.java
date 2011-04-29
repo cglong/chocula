@@ -122,5 +122,9 @@ public class Appointment implements Record {
 			return false;
 		}
 	}
-
+	
+	@Override
+	public String toString() {
+		return desiredDateAndTime.toString() + ": " + patient.getName() + " (" + reason + "): " + doctor.getUsername();
+	}
 }
