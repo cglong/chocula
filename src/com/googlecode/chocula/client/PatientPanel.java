@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import com.db4o.ObjectSet;
 import com.googlecode.chocula.core.Patient;
+import com.googlecode.chocula.core.TreatmentRecord;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
@@ -15,10 +16,10 @@ import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 public class PatientPanel extends JPanel implements UIInfo {
+	private static final long serialVersionUID = -5234615841289503859L;
 	private JTextField textFieldFirstName;
 	private JTextField textFieldLastName;
 	private JTextField textFieldAddress;
@@ -29,6 +30,7 @@ public class PatientPanel extends JPanel implements UIInfo {
 	private JTextField textFieldAllergies;
 	private JTextField textFieldGender;
 	private JButton btnSearch;
+	private Patient patient;
 
 	/**
 	 * Create the panel.
@@ -70,8 +72,6 @@ public class PatientPanel extends JPanel implements UIInfo {
 		textFieldFirstName = new JTextField();
 		add(textFieldFirstName, "4, 2, fill, default");
 		textFieldFirstName.setColumns(10);
-
-		String[] genderChoices = { "Male", "Female" };
 
 		JLabel lblLastName = new JLabel("Last Name:");
 		add(lblLastName, "2, 6, right, default");
@@ -130,12 +130,15 @@ public class PatientPanel extends JPanel implements UIInfo {
 		textFieldAllergies.setColumns(10);
 
 		btnSearch = new JButton("Search");
-		btnSearch.addActionListener(new SearchButtonListener());
+		btnSearch.addActionListener(new ButtonListener());
 		add(btnSearch, "4, 44, right, default");
+		
+		patient = null;
 	}
 
 	public PatientPanel(Patient patient) {
 		this();
+		this.patient = patient;
 		textFieldFirstName.setText(patient.getFirstname());
 		textFieldLastName.setText(patient.getLastname());
 		textFieldAddress.setText(patient.getAddress());
@@ -144,11 +147,18 @@ public class PatientPanel extends JPanel implements UIInfo {
 		textFieldPharmacy.setText(patient.getPharmacy());
 		textFieldInsuranceCarrier.setText(patient.getInsuranceCarrier());
 		textFieldAge.setText(Integer.toString(patient.getAge()));
-		btnSearch.setVisible(false);
+		btnSearch.setText("View Records");
 	}
 
-	private class SearchButtonListener implements ActionListener {
+	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			if (patient == null)
+				search(e);
+			else
+				viewRecords(e);
+		}
+		
+		private void search(ActionEvent e) {
 			String firstname = textFieldFirstName.getText();
 			String lastname = textFieldLastName.getText();
 			String address = textFieldAddress.getText();
@@ -185,6 +195,13 @@ public class PatientPanel extends JPanel implements UIInfo {
 					patients, null);
 			PatientFrame display = new PatientFrame(choice);
 			display.setVisible(true);
+		}
+		
+		private void viewRecords(ActionEvent e) {
+			TreatmentRecord choice = (TreatmentRecord) JOptionPane.showInputDialog(
+					(Component) e.getSource(), "Select a record to view:",
+					"Select Record", JOptionPane.PLAIN_MESSAGE, null,
+					patient.getMedicalHistory(), null);
 		}
 	}
 }
