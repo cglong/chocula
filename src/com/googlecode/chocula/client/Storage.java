@@ -66,6 +66,7 @@ public class Storage implements ServerInfo {
 				address, phoneNumber, gender, pharmacy, insuranceCarrier, age,
 				allergies, medicalHistory);
 		db.store(patient);
+		db.commit();
 		return patient;
 	}
 	
@@ -79,6 +80,7 @@ public class Storage implements ServerInfo {
 	public Nurse createNurse(String username, String password) {
 		Nurse nurse = new Nurse(username, password);
 		db.store(nurse);
+		db.commit();
 		return nurse;
 	}
 	
@@ -92,6 +94,7 @@ public class Storage implements ServerInfo {
 	public Doctor createDoctor(String username, String password) {
 		Doctor doctor = new Doctor(username, password);
 		db.store(doctor);
+		db.commit();
 		return doctor;
 	}
 	
@@ -180,6 +183,7 @@ public class Storage implements ServerInfo {
 		found.setAllergies(allergies);
 		found.setMedicalHistory(medicalHistory);
 		db.store(found);
+		db.commit();
 	}
 	
 	/**
@@ -195,6 +199,7 @@ public class Storage implements ServerInfo {
 		found.setUsername(username);
 		found.setPassword(password);
 		db.store(found);
+		db.commit();
 	}
 	
 	/**
@@ -210,6 +215,7 @@ public class Storage implements ServerInfo {
 		found.setUsername(username);
 		found.setPassword(password);
 		db.store(found);
+		db.commit();
 	}
 	
 	/**
@@ -220,6 +226,7 @@ public class Storage implements ServerInfo {
 	public void deletePatient(Patient patient) {
 		ObjectSet<Patient> result = db.queryByExample(patient);
 		db.delete(result.next());
+		db.commit();
 	}
 	
 	/**
@@ -230,6 +237,7 @@ public class Storage implements ServerInfo {
 	public void deleteNurse(Nurse nurse) {
 		ObjectSet<Nurse> result = db.queryByExample(nurse);
 		db.delete(result.next());
+		db.commit();
 	}
 	
 	/**
@@ -240,6 +248,7 @@ public class Storage implements ServerInfo {
 	public void deleteDoctor(Doctor doctor) {
 		ObjectSet<Doctor> result = db.queryByExample(doctor);
 		db.delete(result.next());
+		db.commit();
 	}
 	
 	/**
@@ -292,6 +301,7 @@ public class Storage implements ServerInfo {
 			String reason, Patient patient) {
 		Appointment appointment = new Appointment(date, doctor, reason, patient);
 		db.store(appointment);
+		db.commit();
 		return appointment;
 	}
 
@@ -327,6 +337,7 @@ public class Storage implements ServerInfo {
 		found.setDesiredDoctor(doctor);
 		found.setPatient(patient);
 		db.store(found);
+		db.commit();
 	}
 
 	/**
@@ -337,6 +348,7 @@ public class Storage implements ServerInfo {
 	public void deleteAppointment(Appointment appointment) {
 		ObjectSet<Appointment> result = db.queryByExample(appointment);
 		db.delete(result.next());
+		db.commit();
 	}
 
 	/**
@@ -359,6 +371,7 @@ public class Storage implements ServerInfo {
 		TreatmentRecord tr = new TreatmentRecord(treatingDoctor, dateAndTime, attendingNurse,
 				doctorsOrders, chiefComplaint, vitalSigns, diagnosis, patient);
 		db.store(tr);
+		db.commit();
 		return tr;
 	}
 
@@ -411,6 +424,7 @@ public class Storage implements ServerInfo {
 		found.setDiagnosis(diagnosis);
 		found.setPatient(patient);
 		db.store(found);
+		db.commit();
 	}
 	
 	/**
@@ -421,6 +435,7 @@ public class Storage implements ServerInfo {
 	public void deleteTreatmentRecord(TreatmentRecord tr) {
 		ObjectSet<TreatmentRecord> result = db.queryByExample(tr);
 		db.delete(result.next());
+		db.commit();
 	}
 	
 	/**
@@ -437,6 +452,7 @@ public class Storage implements ServerInfo {
 		DoctorsOrders doctorsOrders = new DoctorsOrders(prescriptions, labWork,
 				followUpInstr, otherInstr);
 		db.store(doctorsOrders);
+		db.commit();
 		return doctorsOrders;
 	}
 
@@ -473,6 +489,7 @@ public class Storage implements ServerInfo {
 		found.setFollowUpInstr(followUpInstr);
 		found.setOtherInstr(otherInstr);
 		db.store(found);
+		db.commit();
 	}
 
 	/**
@@ -483,17 +500,20 @@ public class Storage implements ServerInfo {
 	public void deleteDoctorsOrders(DoctorsOrders doctorsOrders) {
 		ObjectSet<Appointment> result = db.queryByExample(doctorsOrders);
 		db.delete(result.next());
+		db.commit();
 	}
 	
 	public ErrorEntry createUnexpectedErrorEntry(Exception e, Object o) {
 		ErrorEntry ee = ErrorEntry.newUnexpectedException(e, o);
 		db.store(ee);
+		db.commit();
 		return ee;
 	}
 	
 	public ErrorEntry createExpectedErrorEntry(Exception e, Object o) {
 		ErrorEntry ee = ErrorEntry.newExpectedException(e, o);
 		db.store(ee);
+		db.commit();
 		return ee;
 	}
 	
@@ -508,5 +528,6 @@ public class Storage implements ServerInfo {
 	public void deleteErrorEntry(ErrorEntry ee) {
 		ObjectSet<ErrorEntry> result = db.queryByExample(ee);
 		db.delete(result.next());
+		db.commit();
 	}
 }
