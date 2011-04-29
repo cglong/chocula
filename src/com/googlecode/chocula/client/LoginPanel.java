@@ -9,9 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
 
 public class LoginPanel extends JPanel implements UIInfo {
+	private static final long serialVersionUID = -8769915385635939550L;
 	private JTextField textFieldUsername;
 	private JTextField textFieldPassword;
 	private JButton btnLogin;
@@ -131,7 +135,14 @@ public class LoginPanel extends JPanel implements UIInfo {
 		
 		btnLogin = new JButton("Login");
 		add(btnLogin, "28, 38");
-		
+		btnLogin.addActionListener(new LoginButtonListener());
 	}
-
+	
+	private class LoginButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String username = textFieldUsername.getText();
+			String password = textFieldPassword.getText();
+			Login.getInstance().login(username, password);
+		}
+	}
 }
