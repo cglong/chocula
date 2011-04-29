@@ -198,10 +198,16 @@ public class PatientPanel extends JPanel implements UIInfo {
 		}
 		
 		private void viewRecords(ActionEvent e) {
+			TreatmentRecord[] history = patient.getMedicalHistory();
+			TreatmentRecord[] choices = new TreatmentRecord[history.length+1];
+			for (int i = 0; i < history.length; i++)
+				choices[i] = history[i];
+			choices[choices.length-1] = null;
+			
 			TreatmentRecord choice = (TreatmentRecord) JOptionPane.showInputDialog(
 					(Component) e.getSource(), "Select a record to view:",
 					"Select Record", JOptionPane.PLAIN_MESSAGE, null,
-					patient.getMedicalHistory(), null);
+					choices, null);
 		}
 	}
 }
