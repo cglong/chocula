@@ -268,7 +268,7 @@ public class PatientPanel extends JPanel implements UIInfo {
 				String pharmacy = textFieldPharmacy.getText();
 				String insuranceCarrier = textFieldInsuranceCarrier.getText();
 				String age = textFieldAge.getText();
-				TreatmentRecord[] medicalHistory = new TreatmentRecord[15];
+				TreatmentRecord[] medicalHistory = new TreatmentRecord[0];
 				
 				if (age.equals(""))
 					age = "0";
