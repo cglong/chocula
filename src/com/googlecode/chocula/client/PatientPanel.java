@@ -138,14 +138,14 @@ public class PatientPanel extends JPanel implements UIInfo {
 		add(btnSearch, "4, 44, right, default");
 		
 		patient = null;
-		btnDelete.setVisible(false);
+		btnDelete.setText("Create");
 		btnDelete.addActionListener(new DeleteButtonListener());
 	}
 
 	public PatientPanel(Patient patient) {
 		this();
 		this.patient = patient;
-		btnDelete.setVisible(true);
+		btnDelete.setText("Delete");
 		
 		textFieldFirstName.setText(patient.getFirstname());
 		textFieldLastName.setText(patient.getLastname());
@@ -201,6 +201,8 @@ public class PatientPanel extends JPanel implements UIInfo {
 					(Component) e.getSource(), "Select a patient to view:",
 					"Select Patient", JOptionPane.PLAIN_MESSAGE, null,
 					patients, null);
+			if (choice == null)
+				return;
 			PatientFrame display = new PatientFrame(choice);
 			display.setVisible(true);
 		}
@@ -221,10 +223,29 @@ public class PatientPanel extends JPanel implements UIInfo {
 	
 	private class DeleteButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int n = JOptionPane.showConfirmDialog((Component)e.getSource(), "Are you sure you want to delete this patient?",
-					"Delete?", JOptionPane.YES_NO_OPTION);
-			if (n == JOptionPane.YES_OPTION)
-				Storage.getInstance().deletePatient(patient);
+			if (patient != null) {
+				int n = JOptionPane.showConfirmDialog((Component)e.getSource(), "Are you sure you want to delete this patient?",
+						"Delete?", JOptionPane.YES_NO_OPTION);
+				if (n == JOptionPane.YES_OPTION)
+					Storage.getInstance().deletePatient(patient);
+			} else {
+				String firstname = textFieldFirstName.getText();
+				String lastname = textFieldLastName.getText();
+				String address = textFieldAddress.getText();
+				String phoneNumber = textFieldPhoneNumber.getText();
+				String gender = textFieldGender.getText();
+				String pharmacy = textFieldPharmacy.getText();
+				String insuranceCarrier = textFieldInsuranceCarrier.getText();
+				String age = textFieldAge.getText();
+				TreatmentRecord[] medicalHistory = new TreatmentRecord[15];
+				
+				if (age.equals(""))
+					age = "0";
+				
+				Storage.getInstance().createPatient(null, null, firstname, lastname, address, phoneNumber, gender, pharmacy,
+						insuranceCarrier, null, Integer.parseInt(age), null, medicalHistory, null);
+				JOptionPane.showMessageDialog((Component)e.getSource(), "Patient successfully created!");
+			}
 		}
 	}
 }
