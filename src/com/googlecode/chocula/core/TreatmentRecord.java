@@ -235,6 +235,6 @@ public class TreatmentRecord implements Record {
 	}
 
 	public String toString() {
-		return date;
+		return dateAndTime;
 	}
 }
