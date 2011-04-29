@@ -1,7 +1,6 @@
 package com.googlecode.chocula.client;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import java.awt.BorderLayout;
 import java.awt.event.WindowEvent;
@@ -9,22 +8,25 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JLabel;
 
+import com.googlecode.chocula.core.Patient;
+
 public class PatientFrame extends JFrame implements UIInfo {
+	private static final long serialVersionUID = -5399030332235579108L;
 	private PatientPanel patientPanel;
 	
 	/**
 	 * Create the frame.
 	 */
-	public PatientFrame() {
+	public PatientFrame(Patient patient) {
 		setBounds(100, 100, WINDOWWIDTH, WINDOWHEIGHT);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		JLabel label = new JLabel("Temp");
+		JLabel label = new JLabel("");
 		label.setBounds(0, 0, SIDEBARWIDTH, WINDOWHEIGHT);
 		getContentPane().add(label, BorderLayout.WEST);
 		
-		patientPanel = new PatientPanel();
+		patientPanel = new PatientPanel(patient);
 		getContentPane().add(patientPanel, BorderLayout.CENTER);
 	}
 	

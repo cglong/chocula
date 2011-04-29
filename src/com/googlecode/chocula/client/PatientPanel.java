@@ -183,6 +183,8 @@ public class PatientPanel extends JPanel implements UIInfo {
 					(Component) e.getSource(), "Select a patient to view:",
 					"Select Patient", JOptionPane.PLAIN_MESSAGE, null,
 					patients, null);
+			PatientFrame display = new PatientFrame(choice);
+			display.setVisible(true);
 		}
 	}
 }
