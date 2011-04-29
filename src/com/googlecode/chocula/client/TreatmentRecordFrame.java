@@ -1,19 +1,10 @@
 package com.googlecode.chocula.client;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import java.awt.CardLayout;
 import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 
@@ -23,15 +14,8 @@ import com.googlecode.chocula.core.Nurse;
 import com.googlecode.chocula.core.Patient;
 import com.googlecode.chocula.core.TreatmentRecord;
 
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.util.Date;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -115,8 +99,7 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 						} else if (n == JOptionPane.YES_OPTION) {
 							DoctorsOrders docorder = new DoctorsOrders(
 									prescription, labwork, followup, other);
-							Storage.getInstance().updateTreatmentRecord(
-									treatmentRecord,
+							Storage.getInstance().createTreatmentRecord(
 									new Doctor(tdoc, null),
 									date,
 									new Nurse(nurse, null),
@@ -611,5 +594,16 @@ public class TreatmentRecordFrame extends JFrame implements UIInfo {
 			getContentPane().add(textField_11);
 			textField_11.setColumns(10);
 		}
+	}
+
+	public TreatmentRecordFrame(TreatmentRecord treatmentRecord, Patient patient) {
+		this(treatmentRecord);
+		TreatmentRecord[] medHistory = patient.getMedicalHistory();
+		TreatmentRecord[] newHistory = new TreatmentRecord[medHistory.length + 1];
+		for (int i = 0; i < medHistory.length; i++) {
+			newHistory[i] = medHistory[i];
+			newHistory[newHistory.length - 1] = treatmentRecord;
+		}
+		patient.setMedicalHistory(newHistory);
 	}
 }
